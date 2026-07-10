@@ -5,24 +5,27 @@ import { ServicesGrid } from "@/components/home/ServicesGrid";
 import { ApproachSequence } from "@/components/home/ApproachSequence";
 import { Outcomes } from "@/components/home/Outcomes";
 import { InstitutionsBlock } from "@/components/home/InstitutionsBlock";
+import { MissionVision } from "@/components/site/MissionVision";
 import { CtaBand } from "@/components/site/CtaBand";
 
 /**
- * Home — locked section order (Phase 4 §B):
- * Hero → Credibility strip → Name band → Services → Approach → Outcomes →
- * Institutions → CTA → Footer.
- * CredStrip and Outcomes are evidence-gated (lib/flags.ts) and render
- * nothing until real facts arrive — the order holds when they return.
+ * Home — section order (amended 2026-07-10 redesign):
+ * Dark hero → Trusted-by strip → Mission/Vision → Services → Approach →
+ * Projects → Name band → Institutions → CTA → Footer.
+ * The name band moved below projects: it now acts as the brand-story
+ * breath between evidence (projects) and posture (institutions).
+ * CredStrip and Outcomes remain evidence-gated (lib/flags.ts).
  */
 export default function Home() {
   return (
     <>
       <Hero />
       <CredStrip />
-      <NameBand />
+      <MissionVision />
       <ServicesGrid />
       <ApproachSequence />
       <Outcomes />
+      <NameBand />
       <InstitutionsBlock />
       <CtaBand />
     </>

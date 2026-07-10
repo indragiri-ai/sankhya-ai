@@ -25,6 +25,17 @@ const EXCLUDED = [
 const moved = [];
 fs.mkdirSync(aside, { recursive: true });
 
+// Self-heal: if a previous run crashed before restoring, put its files back
+// before doing anything else.
+for (const [rel, name] of EXCLUDED) {
+  const leftover = path.join(aside, name);
+  const home = path.join(root, rel);
+  if (fs.existsSync(leftover) && !fs.existsSync(home)) {
+    fs.renameSync(leftover, home);
+    console.warn(`Restored leftover from previous run: ${rel}`);
+  }
+}
+
 try {
   for (const [rel, name] of EXCLUDED) {
     const from = path.join(root, rel);
@@ -51,6 +62,32 @@ try {
   fs.writeFileSync(path.join(root, "out", ".nojekyll"), "");
   console.log("\nStatic site written to out/");
 } finally {
-  for (const [to, from] of moved) fs.renameSync(to, from);
-  fs.rmSync(aside, { recursive: true, force: true });
+  // Restore every moved file; retry (Windows can hold transient locks) and
+  // never let one failure skip the rest. Loud failure > silent loss.
+  const failed = [];
+  for (const [to, from] of moved) {
+    let restored = false;
+    for (let attempt = 0; attempt < 5 && !restored; attempt++) {
+      try {
+        fs.renameSync(to, from);
+        restored = true;
+      } catch {
+        // brief blocking backoff
+        const until = Date.now() + 200 * (attempt + 1);
+        while (Date.now() < until) {
+          /* wait */
+        }
+      }
+    }
+    if (!restored) failed.push(from);
+  }
+  if (failed.length === 0) {
+    fs.rmSync(aside, { recursive: true, force: true });
+  } else {
+    console.error(
+      `FAILED TO RESTORE (files remain in ${aside} — move them back by hand):\n` +
+        failed.map((f) => `  ${f}`).join("\n")
+    );
+    process.exitCode = 1;
+  }
 }

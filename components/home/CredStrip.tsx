@@ -35,24 +35,28 @@ export function CredStrip() {
   if (!SHOW_CRED_STRIP) return null;
 
   return (
-    <section aria-label="Partners" className="border-b border-grey-200">
+    <section aria-label="Partners" className="border-b border-grey-200 bg-surface">
       <div className="mx-auto max-w-[1200px] px-[var(--s-6)] py-[var(--s-12)]">
         <Reveal>
-          <p className="text-small text-grey-600">
-            Organizations we have worked with
+          <p className="text-eyebrow text-center text-grey-600">
+            Trusted by partners &amp; collaborators
           </p>
         </Reveal>
-        <ul className="mt-[var(--s-6)] flex flex-wrap items-center gap-x-[var(--s-12)] gap-y-[var(--s-6)]">
+        <ul className="mt-[var(--s-8)] flex flex-wrap items-center justify-center gap-x-[var(--s-16)] gap-y-[var(--s-6)]">
           {PARTNERS.map((p, i) => (
             <Reveal as="li" key={p.name} step={i + 1}>
               {p.logo ? (
+                // grayscale keeps four visually unrelated marks from fighting
+                // the palette; full color returns on hover
                 <img
                   src={asset(p.logo)}
                   alt={p.name}
-                  className="h-[var(--s-12)] w-auto"
+                  className="h-[var(--s-12)] w-auto opacity-70 grayscale transition-[filter,opacity] duration-[var(--dur-fast)] ease-[var(--ease-out)] hover:opacity-100 hover:grayscale-0"
                 />
               ) : (
-                <span className="text-body text-grey-600">{p.name}</span>
+                <span className="text-body font-[550] text-grey-600">
+                  {p.name}
+                </span>
               )}
             </Reveal>
           ))}

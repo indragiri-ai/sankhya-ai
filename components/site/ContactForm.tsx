@@ -30,6 +30,14 @@ type Status = "idle" | "submitting" | "success" | "error";
 const IS_STATIC = process.env.NEXT_PUBLIC_STATIC_EXPORT === "1";
 
 /**
+ * Web3Forms access key (client's decision 2026-07-10: form-to-email service
+ * so the form works on static hosting). The key is public by design —
+ * Web3Forms scopes it to sending mail to the account's verified inbox.
+ * Empty → static build falls back to the direct-email card.
+ */
+const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "";
+
+/**
  * Static-hosting fallback (GitHub Pages has no server to receive the form):
  * a direct-email card in place of the form, same panel styling.
  */
@@ -57,7 +65,7 @@ function StaticContactCard() {
 }
 
 export function ContactForm() {
-  if (IS_STATIC) return <StaticContactCard />;
+  if (IS_STATIC && !WEB3FORMS_KEY) return <StaticContactCard />;
   return <InteractiveContactForm />;
 }
 
@@ -90,6 +98,38 @@ function InteractiveContactForm() {
   async function onSubmit(data: Inquiry) {
     setStatus("submitting");
     setRequestId(null);
+
+    // Static hosting (GitHub Pages): no server of ours — deliver via
+    // Web3Forms instead. The time-gate runs client-side; Web3Forms'
+    // botcheck field covers the honeypot role on their end.
+    if (IS_STATIC && WEB3FORMS_KEY) {
+      if (Date.now() - mountedAt.current < 3000) {
+        setStatus("success"); // bot-speed submit: fake success, send nothing
+        return;
+      }
+      try {
+        const res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_KEY,
+            subject: `Inquiry — ${data.name}${data.organization ? ` (${data.organization})` : ""}`,
+            from_name: data.name,
+            email: data.email,
+            organization: data.organization || "—",
+            service: data.service,
+            message: data.message,
+            botcheck: "",
+          }),
+        });
+        const body = (await res.json().catch(() => ({}))) as { success?: boolean };
+        setStatus(body.success ? "success" : "error");
+      } catch {
+        setStatus("error");
+      }
+      return;
+    }
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",

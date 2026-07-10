@@ -37,6 +37,9 @@ export const metadata: Metadata = {
   // [PLACEHOLDER — verify description copy before launch]
   description:
     "Sankhya AI designs and builds data systems, analytics, and applied AI for organizations in Nepal.",
+  // PREVIEW PERIOD (2026-07-10): site is live for team review with [SAMPLE]
+  // content — keep search engines out until real facts land. REMOVE at launch.
+  robots: { index: false, follow: false },
   openGraph: {
     siteName: SITE_NAME,
     type: "website",

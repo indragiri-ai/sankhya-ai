@@ -15,8 +15,17 @@ export function CtaBand({
   buttonLabel?: string;
 }) {
   return (
-    <section data-surface="dark" className="bg-violet">
-      <div className="mx-auto flex max-w-[1200px] flex-col items-start gap-[var(--s-8)] px-[var(--s-6)] py-[var(--s-24)] md:py-[var(--s-32)]">
+    <section data-surface="dark" className="relative overflow-hidden bg-violet">
+      {/* Same quiet radial depth as the hero — bookends the page */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(100% 120% at 85% 100%, rgb(74 20 140 / 0.55) 0%, transparent 55%)",
+        }}
+      />
+      <div className="relative mx-auto flex max-w-[1200px] flex-col items-start gap-[var(--s-8)] px-[var(--s-6)] py-[var(--s-24)] md:py-[var(--s-32)]">
         <Reveal step={0}>
           <h2 className="text-h2 max-w-[24ch] text-bone">{heading}</h2>
         </Reveal>

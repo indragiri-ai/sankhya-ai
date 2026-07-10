@@ -1,0 +1,902 @@
+# Fusemachines
+## Mission
+Create implementation-ready, token-driven UI guidance for Fusemachines that is optimized for consistency, accessibility, and fast delivery across marketing website.
+
+## Brand
+- Product/brand: Fusemachines
+- URL: https://fusemachines.com/
+- Audience: visitors and general audience
+- Product surface: marketing website
+- Style theme tone: modern, clean, and highly engaging
+
+## Design Token Registry
+### Color Tokens
+- `color-foreground-1` (Role: foreground): Hex `#0A0A0A`, Raw `rgba(10, 10, 10, 1)` (Confidence: 0.80, Frequency: 574)
+- `color-background-2` (Role: background): Hex `#FFFFFF`, Raw `rgba(255, 255, 255, 1)` (Confidence: 0.80, Frequency: 570)
+- `color-muted-3` (Role: muted): Hex `#8F8F8F`, Raw `rgba(143, 143, 143, 1)` (Confidence: 0.80, Frequency: 78)
+- `color-muted-4` (Role: muted): Hex `#FFFFFF80`, Raw `rgba(255, 255, 255, 0.5)` (Confidence: 0.80, Frequency: 72)
+- `color-warning-5` (Role: warning): Hex `#FFCD03`, Raw `rgba(255, 205, 3, 1)` (Confidence: 0.90, Frequency: 24)
+- `color-primary-6` (Role: primary): Hex `#0058A0`, Raw `rgba(0, 88, 160, 1)` (Confidence: 0.60, Frequency: 18)
+- `color-background-7` (Role: background): Hex `#BBC1C4`, Raw `rgba(187, 193, 196, 1)` (Confidence: 0.80, Frequency: 9)
+- `color-foreground-8` (Role: foreground): Hex `#0A0A0AE6`, Raw `rgba(10, 10, 10, 0.9)` (Confidence: 0.80, Frequency: 6)
+- `color-border-9` (Role: border): Hex `#E0E0E0`, Raw `rgba(224, 224, 224, 1)` (Confidence: 0.85, Frequency: 6)
+- `color-background-10` (Role: background): Hex `#F3F1EE`, Raw `rgba(243, 241, 238, 1)` (Confidence: 0.80, Frequency: 1)
+- `color-secondary-11` (Role: secondary): Hex `#F7D046`, Raw `rgba(247, 208, 70, 1)` (Confidence: 0.65, Frequency: 1)
+- `color-secondary-12` (Role: secondary): Hex `#001F34`, Raw `rgba(0, 31, 52, 1)` (Confidence: 0.65, Frequency: 1)
+
+### Typography Style Specifications
+- Primary Font Family: `museo-sans`
+- Base Size: `60px`
+- Base Weight: `900`
+- Line Height: `75px`
+- Typography Scale: `font.size.h1=48px`, `font.size.h2=27.75px`, `font.size.h3=24px`
+
+#### Heading Tags
+- Heading Tag `h2.fs-48.fw-bolder`: Font `museo-sans`, Size `48px`, Weight `900`, Line Height `57.6px`
+- Heading Tag `h2.h3.fw-semibold`: Font `museo-sans`, Size `27.75px`, Weight `600`, Line Height `38.85px`
+- Heading Tag `h3.fs-24.fw-bold.mb-0`: Font `museo-sans`, Size `24px`, Weight `700`, Line Height `33.6px`
+
+#### Body Elements
+- Body Paragraph `p.h1.fw-bolder.lh-sm`: Font `museo-sans`, Size `60px`, Weight `900`, Line Height `75px`
+- Body Paragraph `p.fs-2.fw-bolder.lh-sm`: Font `museo-sans`, Size `39.75px`, Weight `900`, Line Height `49.6875px`
+- Body Paragraph `p.h2.museo-9`: Font `museo-sans`, Size `39.75px`, Weight `900`, Line Height `47.7px`
+- Body Paragraph `p.h3.fw-bold.text-warning.slide__tag`: Font `museo-sans`, Size `27.75px`, Weight `700`, Line Height `38.85px`
+- Body Paragraph `p.fs-24.fw-semibold.px-lg-4.m-0`: Font `museo-sans`, Size `24px`, Weight `600`, Line Height `30px`
+- Body Paragraph `p.fs-24.fw-bold`: Font `museo-sans`, Size `24px`, Weight `700`, Line Height `30px`
+- Body Paragraph `p.fs-20.fw-bold`: Font `museo-sans`, Size `20.25px`, Weight `700`, Line Height `25.3125px`
+- Body Paragraph `p.fs-20`: Font `museo-sans`, Size `20.25px`, Weight `400`, Line Height `25.3125px`
+- Body Paragraph `a.py-1.px-0, li.nav-item.dropdown-center, li.nav-item.dropdown-center.ai-solution-nav, li.nav-item.ms-xl-4, p.d-md-block.d-none.text-center, a.btn-arrow-slide, p, a`: Font `museo-sans`, Size `15px`, Weight `400`, Line Height `18.75px`
+- Body Paragraph `a.nav-link.dropdown-toggle`: Font `museo-sans`, Size `15px`, Weight `400`, Line Height `21px`
+- Body Paragraph `a.btn.btn-warning.btn-sm.w-100`: Font `museo-sans`, Size `15px`, Weight `500`, Line Height `21px`
+- Body Paragraph `a.btn.btn-secondary.btn-interactive-slide, span`: Font `museo-sans`, Size `15px`, Weight `600`, Line Height `22.5px`
+
+### Spacing System
+- Space Token `space.1` (`--space-1`): `3px` (px: 3, Frequency: 10)
+- Space Token `space.2` (`--space-2`): `3.75px` (px: 3.75, Frequency: 7)
+- Space Token `space.3` (`--space-3`): `5px` (px: 5, Frequency: 21)
+- Space Token `space.4` (`--space-4`): `5.625px` (px: 5.625, Frequency: 2)
+- Space Token `space.5` (`--space-5`): `7.5px` (px: 7.5, Frequency: 44)
+- Space Token `space.6` (`--space-6`): `11.25px` (px: 11.25, Frequency: 67)
+- Space Token `space.7` (`--space-7`): `12px` (px: 12, Frequency: 12)
+- Space Token `space.8` (`--space-8`): `13.125px` (px: 13.125, Frequency: 2)
+- Space Token `space.9` (`--space-9`): `13.5px` (px: 13.5, Frequency: 2)
+- Space Token `space.10` (`--space-10`): `15px` (px: 15, Frequency: 62)
+- Space Token `space.11` (`--space-11`): `16.875px` (px: 16.875, Frequency: 9)
+- Space Token `space.12` (`--space-12`): `18px` (px: 18, Frequency: 2)
+- Space Token `space.13` (`--space-13`): `20px` (px: 20, Frequency: 9)
+- Space Token `space.14` (`--space-14`): `22.5px` (px: 22.5, Frequency: 30)
+- Space Token `space.15` (`--space-15`): `30px` (px: 30, Frequency: 3)
+- Space Token `space.16` (`--space-16`): `30.15px` (px: 30.15, Frequency: 2)
+- Space Token `space.17` (`--space-17`): `33.3229px` (px: 33.3229, Frequency: 2)
+- Space Token `space.18` (`--space-18`): `37.5px` (px: 37.5, Frequency: 3)
+- Space Token `space.19` (`--space-19`): `45px` (px: 45, Frequency: 17)
+- Space Token `space.20` (`--space-20`): `45.25px` (px: 45.25, Frequency: 2)
+- Space Token `space.21` (`--space-21`): `47.3333px` (px: 47.3333, Frequency: 6)
+- Space Token `space.22` (`--space-22`): `52.5px` (px: 52.5, Frequency: 1)
+- Space Token `space.23` (`--space-23`): `62.3333px` (px: 62.3333, Frequency: 16)
+- Space Token `space.24` (`--space-24`): `71.5px` (px: 71.5, Frequency: 2)
+- Space Token `space.25` (`--space-25`): `94.9896px` (px: 94.9896, Frequency: 1)
+
+### Layout & Border Radius Mappings
+- Corner Radius `radius.1`: `4px` (px: 4, Frequency: 20)
+- Corner Radius `radius.2`: `5.625px` (px: 5.625, Frequency: 8)
+- Corner Radius `radius.3`: `7.5px` (px: 7.5, Frequency: 4)
+- Corner Radius `radius.4`: `10px` (px: 10, Frequency: 20)
+- Corner Radius `radius.5`: `15px` (px: 15, Frequency: 12)
+- Corner Radius `radius.6`: `33.75px` (px: 33.75, Frequency: 12)
+
+### Shadow Elevation Guidelines
+- Shadow Elevation `shadow.1`: `rgba(0, 0, 0, 0.05) 0px 4px 4px 0px` (Elevation: sm, Frequency: 1)
+
+## Style Foundations
+- Visual style: modern, clean, and highly engaging
+- Main font style: `font.family.primary=museo-sans`, `font.family.stack=museo-sans, sans-serif`, `font.size.base=60px`, `font.weight.base=900`, `font.lineHeight.base=75px`
+- Typography scale: `font.size.h1=48px`, `font.size.h2=27.75px`, `font.size.h3=24px`
+- Color palette: `color.text.primary=#0A0A0A`, `color.surface.base=#FFFFFF`, `color.surface.muted=#000000`, `color.border.default=#E0E0E0`, `color-muted-3=#8F8F8F`, `color-muted-4=#FFFFFF80`, `color-warning-5=#FFCD03`, `color-primary-6=#0058A0`, `color-secondary-11=#F7D046`, `color-secondary-12=#001F34`
+- Spacing scale: `space.1=3px`, `space.2=3.75px`, `space.3=5px`, `space.4=5.625px`, `space.5=7.5px`, `space.6=11.25px`, `space.7=12px`, `space.8=13.125px`, `space.9=13.5px`, `space.10=15px`, `space.11=16.875px`, `space.12=18px`, `space.13=20px`, `space.14=22.5px`, `space.15=30px`, `space.16=30.15px`, `space.17=33.3229px`, `space.18=37.5px`, `space.19=45px`, `space.20=45.25px`, `space.21=47.3333px`, `space.22=52.5px`, `space.23=62.3333px`, `space.24=71.5px`, `space.25=94.9896px`
+- Radius/shadow/motion tokens: No reliable extraction yet; motion and shape tokens should be defined manually.
+
+## Accessibility Requirements (WCAG 2.2 AA)
+- Contrast: All text elements must satisfy contrast ratio requirements. Primary text (`#0A0A0A`) on background (`#FFFFFF`) must be >= 4.5:1.
+- Keyboard: All interactive elements (anchors, buttons, inputs) must be operable using standard keyboard keys (Tab, Shift+Tab, Enter, Space).
+- Focus Indicators: Interactive elements must have a visible, high-contrast focus indicator (e.g. outline or background change).
+- Content Structure: Landmark semantic elements (header, nav, main, section, footer) must be used to group page sections.
+
+## Component Specifications & Style Rules
+- **Hero & Header Sections** (`header.main-menu`):
+  - Visual Rules:
+    - `background-color`: `rgb(255, 255, 255)`
+    - `color`: `rgb(10, 10, 10)`
+    - `font-family`: `museo-sans, sans-serif`
+    - `font-size`: `15px`
+    - `font-weight`: `400`
+    - `line-height`: `18.75px`
+    - `letter-spacing`: `0.2px`
+    - `border-top-color`: `rgb(10, 10, 10)`
+    - `border-bottom-width`: `0.666667px`
+    - `border-bottom-style`: `solid`
+    - `border-bottom-color`: `rgba(0, 0, 0, 0)`
+    - `border-left-color`: `rgb(10, 10, 10)`
+    - `border-right-color`: `rgb(10, 10, 10)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `box-shadow`: `rgba(0, 0, 0, 0.05) 0px 4px 4px 0px`
+    - `display`: `block`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `1264.67px`
+    - `height`: `62.6667px`
+    - `position`: `sticky`
+    - `z-index`: `99`
+    - `transition-property`: `all, all, all`
+    - `transition-duration`: `0s, 0.3s, 0s`
+    - `transition-timing-function`: `ease, ease, ease-in-out`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Navigation** (`header.main-menu`):
+  - Visual Rules:
+    - `background-color`: `rgb(255, 255, 255)`
+    - `color`: `rgb(10, 10, 10)`
+    - `font-family`: `museo-sans, sans-serif`
+    - `font-size`: `15px`
+    - `font-weight`: `400`
+    - `line-height`: `18.75px`
+    - `letter-spacing`: `0.2px`
+    - `border-top-color`: `rgb(10, 10, 10)`
+    - `border-bottom-width`: `0.666667px`
+    - `border-bottom-style`: `solid`
+    - `border-bottom-color`: `rgba(0, 0, 0, 0)`
+    - `border-left-color`: `rgb(10, 10, 10)`
+    - `border-right-color`: `rgb(10, 10, 10)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `box-shadow`: `rgba(0, 0, 0, 0.05) 0px 4px 4px 0px`
+    - `display`: `block`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `1264.67px`
+    - `height`: `62.6667px`
+    - `position`: `sticky`
+    - `z-index`: `99`
+    - `transition-property`: `all, all, all`
+    - `transition-duration`: `0s, 0.3s, 0s`
+    - `transition-timing-function`: `ease, ease, ease-in-out`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Navigation** (`nav.navbar.navbar-expand-xl.py-lg-0.py-2`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `color`: `rgb(10, 10, 10)`
+    - `font-family`: `museo-sans, sans-serif`
+    - `font-size`: `15px`
+    - `font-weight`: `400`
+    - `line-height`: `18.75px`
+    - `letter-spacing`: `0.2px`
+    - `border-top-color`: `rgb(10, 10, 10)`
+    - `border-bottom-color`: `rgb(10, 10, 10)`
+    - `border-left-color`: `rgb(10, 10, 10)`
+    - `border-right-color`: `rgb(10, 10, 10)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `display`: `flex`
+    - `align-items`: `center`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `1264.67px`
+    - `height`: `62px`
+    - `position`: `relative`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Layout Container (FLEX)** (`nav.navbar.navbar-expand-xl.py-lg-0.py-2`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `color`: `rgb(10, 10, 10)`
+    - `font-family`: `museo-sans, sans-serif`
+    - `font-size`: `15px`
+    - `font-weight`: `400`
+    - `line-height`: `18.75px`
+    - `letter-spacing`: `0.2px`
+    - `border-top-color`: `rgb(10, 10, 10)`
+    - `border-bottom-color`: `rgb(10, 10, 10)`
+    - `border-left-color`: `rgb(10, 10, 10)`
+    - `border-right-color`: `rgb(10, 10, 10)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `display`: `flex`
+    - `align-items`: `center`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `1264.67px`
+    - `height`: `62px`
+    - `position`: `relative`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Navigation** (`a.navbar-brand.py-xl-0.py-lg-3`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `color`: `rgba(10, 10, 10, 0.9)`
+    - `font-family`: `museo-sans, sans-serif`
+    - `font-size`: `18.75px`
+    - `font-weight`: `400`
+    - `line-height`: `23.4375px`
+    - `letter-spacing`: `0.2px`
+    - `margin-right`: `15px`
+    - `border-top-color`: `rgba(10, 10, 10, 0.9)`
+    - `border-bottom-color`: `rgba(10, 10, 10, 0.9)`
+    - `border-left-color`: `rgba(10, 10, 10, 0.9)`
+    - `border-right-color`: `rgba(10, 10, 10, 0.9)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `display`: `block`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `201px`
+    - `height`: `30px`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Buttons** (`button, .btn`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `color`: `rgb(10, 10, 10)`
+    - `font-family`: `museo-sans, sans-serif`
+    - `font-size`: `15px`
+    - `font-weight`: `400`
+    - `line-height`: `21px`
+    - `letter-spacing`: `0.2px`
+    - `text-align`: `center`
+    - `padding-top`: `7.5px`
+    - `padding-bottom`: `7.5px`
+    - `padding-left`: `7.5px`
+    - `padding-right`: `7.5px`
+    - `border-top-color`: `rgb(10, 10, 10)`
+    - `border-bottom-color`: `rgb(10, 10, 10)`
+    - `border-left-color`: `rgb(10, 10, 10)`
+    - `border-right-color`: `rgb(10, 10, 10)`
+    - `border-radius`: `4px`
+    - `border-top-left-radius`: `4px`
+    - `border-top-right-radius`: `4px`
+    - `border-bottom-left-radius`: `4px`
+    - `border-bottom-right-radius`: `4px`
+    - `display`: `block`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `115.812px`
+    - `height`: `36px`
+    - `position`: `relative`
+    - `transition-property`: `all, all, all`
+    - `transition-duration`: `0s, 0.3s, 0s`
+    - `transition-timing-function`: `ease, ease, ease-in-out`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Layout Container (FLEX)** (`ul.navbar-nav.ms-auto.sticky-bottom.bg-white`):
+  - Visual Rules:
+    - `background-color`: `rgb(255, 255, 255)`
+    - `color`: `rgb(10, 10, 10)`
+    - `font-family`: `museo-sans, sans-serif`
+    - `font-size`: `15px`
+    - `font-weight`: `400`
+    - `line-height`: `18.75px`
+    - `letter-spacing`: `0.2px`
+    - `margin-left`: `33.3229px`
+    - `border-top-color`: `rgb(10, 10, 10)`
+    - `border-bottom-color`: `rgb(10, 10, 10)`
+    - `border-left-color`: `rgb(10, 10, 10)`
+    - `border-right-color`: `rgb(10, 10, 10)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `display`: `flex`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `184.615px`
+    - `height`: `62px`
+    - `position`: `sticky`
+    - `z-index`: `1020`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Buttons** (`button, .btn`):
+  - Visual Rules:
+    - `background-color`: `rgb(255, 205, 3)`
+    - `color`: `rgb(10, 10, 10)`
+    - `font-family`: `museo-sans, sans-serif`
+    - `font-size`: `15px`
+    - `font-weight`: `500`
+    - `line-height`: `21px`
+    - `letter-spacing`: `0.2px`
+    - `text-align`: `center`
+    - `padding-top`: `7.5px`
+    - `padding-bottom`: `7.5px`
+    - `padding-left`: `18px`
+    - `padding-right`: `18px`
+    - `border-top-width`: `0.666667px`
+    - `border-top-style`: `solid`
+    - `border-top-color`: `rgb(255, 205, 3)`
+    - `border-bottom-width`: `0.666667px`
+    - `border-bottom-style`: `solid`
+    - `border-bottom-color`: `rgb(255, 205, 3)`
+    - `border-left-width`: `0.666667px`
+    - `border-left-style`: `solid`
+    - `border-left-color`: `rgb(255, 205, 3)`
+    - `border-right-width`: `0.666667px`
+    - `border-right-style`: `solid`
+    - `border-right-color`: `rgb(255, 205, 3)`
+    - `border-radius`: `33.75px`
+    - `border-top-left-radius`: `33.75px`
+    - `border-top-right-radius`: `33.75px`
+    - `border-bottom-left-radius`: `33.75px`
+    - `border-bottom-right-radius`: `33.75px`
+    - `display`: `inline-block`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `162.115px`
+    - `height`: `38px`
+    - `transition-property`: `background-color, color, transform`
+    - `transition-duration`: `0.2s, 0.2s, 0.2s`
+    - `transition-timing-function`: `ease, ease, ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Badges & Chips** (`.badge, .chip`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `color`: `rgb(10, 10, 10)`
+    - `font-family`: `museo-sans, sans-serif`
+    - `font-size`: `15px`
+    - `font-weight`: `400`
+    - `line-height`: `18.75px`
+    - `letter-spacing`: `0.2px`
+    - `border-top-color`: `rgb(10, 10, 10)`
+    - `border-bottom-color`: `rgb(10, 10, 10)`
+    - `border-left-color`: `rgb(10, 10, 10)`
+    - `border-right-color`: `rgb(10, 10, 10)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `display`: `block`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `1264.67px`
+    - `height`: `560px`
+    - `position`: `relative`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Layout Container (FLEX)** (`div.row.align-items-center.h-100`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `color`: `rgb(255, 255, 255)`
+    - `font-family`: `museo-sans, sans-serif`
+    - `font-size`: `15px`
+    - `font-weight`: `400`
+    - `line-height`: `18.75px`
+    - `letter-spacing`: `0.2px`
+    - `margin-left`: `-11.25px`
+    - `margin-right`: `-11.25px`
+    - `border-top-color`: `rgb(255, 255, 255)`
+    - `border-bottom-color`: `rgb(255, 255, 255)`
+    - `border-left-color`: `rgb(255, 255, 255)`
+    - `border-right-color`: `rgb(255, 255, 255)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `display`: `flex`
+    - `align-items`: `center`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `1140px`
+    - `height`: `474.115px`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Badges & Chips** (`.badge, .chip`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `color`: `rgb(255, 205, 3)`
+    - `font-family`: `museo-sans, sans-serif`
+    - `font-size`: `27.75px`
+    - `font-weight`: `700`
+    - `line-height`: `38.85px`
+    - `letter-spacing`: `0.2px`
+    - `margin-bottom`: `7.5px`
+    - `border-top-color`: `rgb(255, 205, 3)`
+    - `border-bottom-color`: `rgb(255, 205, 3)`
+    - `border-left-color`: `rgb(255, 205, 3)`
+    - `border-right-color`: `rgb(255, 205, 3)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `display`: `block`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `642.49px`
+    - `height`: `38.8438px`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Buttons** (`button, .btn`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `color`: `rgb(10, 10, 10)`
+    - `font-family`: `museo-sans, sans-serif`
+    - `font-size`: `38px`
+    - `font-weight`: `400`
+    - `line-height`: `47.5px`
+    - `letter-spacing`: `0.2px`
+    - `text-align`: `center`
+    - `border-top-color`: `rgb(10, 10, 10)`
+    - `border-bottom-color`: `rgb(10, 10, 10)`
+    - `border-left-color`: `rgb(10, 10, 10)`
+    - `border-right-color`: `rgb(10, 10, 10)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `display`: `block`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `76px`
+    - `height`: `560px`
+    - `position`: `absolute`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Layout Container (GRID)** (`div.owl-dots`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `color`: `rgb(10, 10, 10)`
+    - `font-family`: `museo-sans, sans-serif`
+    - `font-size`: `15px`
+    - `font-weight`: `400`
+    - `line-height`: `18.75px`
+    - `letter-spacing`: `0.2px`
+    - `border-top-color`: `rgb(10, 10, 10)`
+    - `border-bottom-color`: `rgb(10, 10, 10)`
+    - `border-left-color`: `rgb(10, 10, 10)`
+    - `border-right-color`: `rgb(10, 10, 10)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `display`: `grid`
+    - `align-items`: `start`
+    - `gap`: `30px`
+    - `grid-template-columns`: `199.5px 199.5px 199.5px 199.5px 199.5px`
+    - `grid-template-rows`: `80.5px`
+    - `width`: `1117.5px`
+    - `height`: `80.5px`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Buttons** (`button, .btn`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `color`: `rgb(255, 255, 255)`
+    - `font-family`: `museo-sans, sans-serif`
+    - `font-size`: `15px`
+    - `font-weight`: `400`
+    - `line-height`: `18.75px`
+    - `letter-spacing`: `0.2px`
+    - `margin-top`: `5px`
+    - `margin-bottom`: `5px`
+    - `margin-left`: `3px`
+    - `margin-right`: `3px`
+    - `border-top-color`: `rgb(255, 255, 255)`
+    - `border-bottom-color`: `rgb(255, 255, 255)`
+    - `border-left-color`: `rgb(255, 255, 255)`
+    - `border-right-color`: `rgb(255, 255, 255)`
+    - `border-radius`: `10px`
+    - `border-top-left-radius`: `10px`
+    - `border-top-right-radius`: `10px`
+    - `border-bottom-left-radius`: `10px`
+    - `border-bottom-right-radius`: `10px`
+    - `display`: `block`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `193.5px`
+    - `height`: `51.75px`
+    - `transition-property`: `background-color`
+    - `transition-duration`: `0.6s`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Layout Container (FLEX)** (`div.progress`):
+  - Visual Rules:
+    - `background-color`: `rgb(187, 193, 196)`
+    - `color`: `rgb(255, 255, 255)`
+    - `font-family`: `museo-sans, sans-serif`
+    - `font-size`: `11.25px`
+    - `font-weight`: `400`
+    - `line-height`: `14.0625px`
+    - `letter-spacing`: `0.2px`
+    - `margin-bottom`: `15px`
+    - `border-top-color`: `rgb(255, 255, 255)`
+    - `border-bottom-color`: `rgb(255, 255, 255)`
+    - `border-left-color`: `rgb(255, 255, 255)`
+    - `border-right-color`: `rgb(255, 255, 255)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `display`: `flex`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `193.5px`
+    - `height`: `3px`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Layout Container (FLEX)** (`div.progress-bar`):
+  - Visual Rules:
+    - `background-color`: `rgb(255, 205, 3)`
+    - `color`: `rgb(255, 255, 255)`
+    - `font-family`: `museo-sans, sans-serif`
+    - `font-size`: `11.25px`
+    - `font-weight`: `400`
+    - `line-height`: `14.0625px`
+    - `letter-spacing`: `0.2px`
+    - `text-align`: `center`
+    - `border-top-color`: `rgb(255, 255, 255)`
+    - `border-bottom-color`: `rgb(255, 255, 255)`
+    - `border-left-color`: `rgb(255, 255, 255)`
+    - `border-right-color`: `rgb(255, 255, 255)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `display`: `flex`
+    - `flex-direction`: `column`
+    - `justify-content`: `center`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `25.5104px`
+    - `height`: `4px`
+    - `transition-property`: `width`
+    - `transition-duration`: `0.6s`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Buttons** (`button, .btn`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `color`: `rgba(255, 255, 255, 0.5)`
+    - `font-family`: `museo-sans, sans-serif`
+    - `font-size`: `15px`
+    - `font-weight`: `400`
+    - `line-height`: `18.75px`
+    - `letter-spacing`: `0.2px`
+    - `margin-top`: `5px`
+    - `margin-bottom`: `5px`
+    - `margin-left`: `3px`
+    - `margin-right`: `3px`
+    - `border-top-color`: `rgba(255, 255, 255, 0.5)`
+    - `border-bottom-color`: `rgba(255, 255, 255, 0.5)`
+    - `border-left-color`: `rgba(255, 255, 255, 0.5)`
+    - `border-right-color`: `rgba(255, 255, 255, 0.5)`
+    - `border-radius`: `10px`
+    - `border-top-left-radius`: `10px`
+    - `border-top-right-radius`: `10px`
+    - `border-bottom-left-radius`: `10px`
+    - `border-bottom-right-radius`: `10px`
+    - `display`: `block`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `193.5px`
+    - `height`: `51.75px`
+    - `transition-property`: `background-color`
+    - `transition-duration`: `0.6s`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Layout Container (FLEX)** (`div.progress`):
+  - Visual Rules:
+    - `background-color`: `rgb(187, 193, 196)`
+    - `color`: `rgba(255, 255, 255, 0.5)`
+    - `font-family`: `museo-sans, sans-serif`
+    - `font-size`: `11.25px`
+    - `font-weight`: `400`
+    - `line-height`: `14.0625px`
+    - `letter-spacing`: `0.2px`
+    - `margin-bottom`: `15px`
+    - `border-top-color`: `rgba(255, 255, 255, 0.5)`
+    - `border-bottom-color`: `rgba(255, 255, 255, 0.5)`
+    - `border-left-color`: `rgba(255, 255, 255, 0.5)`
+    - `border-right-color`: `rgba(255, 255, 255, 0.5)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `display`: `flex`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `193.5px`
+    - `height`: `3px`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Buttons** (`button, .btn`):
+  - Visual Rules:
+    - `background-color`: `rgb(247, 208, 70)`
+    - `color`: `rgb(10, 10, 10)`
+    - `font-family`: `museo-sans, sans-serif`
+    - `font-size`: `15px`
+    - `font-weight`: `600`
+    - `line-height`: `22.5px`
+    - `letter-spacing`: `0.2px`
+    - `text-transform`: `uppercase`
+    - `text-align`: `center`
+    - `padding-top`: `13.5px`
+    - `padding-bottom`: `13.5px`
+    - `padding-left`: `52.5px`
+    - `padding-right`: `15px`
+    - `border-top-color`: `rgb(10, 10, 10)`
+    - `border-bottom-color`: `rgb(10, 10, 10)`
+    - `border-left-color`: `rgb(10, 10, 10)`
+    - `border-right-color`: `rgb(10, 10, 10)`
+    - `border-radius`: `33.75px`
+    - `border-top-left-radius`: `33.75px`
+    - `border-top-right-radius`: `33.75px`
+    - `border-bottom-left-radius`: `33.75px`
+    - `border-bottom-right-radius`: `33.75px`
+    - `display`: `inline-block`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `164.594px`
+    - `height`: `49.5px`
+    - `position`: `relative`
+    - `transition-property`: `background-color, color, padding`
+    - `transition-duration`: `0.4s, 0.4s, 0.4s`
+    - `transition-timing-function`: `ease-in-out, ease-in-out, ease-in-out`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Buttons** (`button, .btn`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `color`: `rgb(0, 88, 160)`
+    - `font-family`: `museo-sans, sans-serif`
+    - `font-size`: `15px`
+    - `font-weight`: `400`
+    - `line-height`: `18.75px`
+    - `letter-spacing`: `0.2px`
+    - `border-top-color`: `rgb(0, 88, 160)`
+    - `border-bottom-color`: `rgb(0, 88, 160)`
+    - `border-left-color`: `rgb(0, 88, 160)`
+    - `border-right-color`: `rgb(0, 88, 160)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `display`: `inline`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Cards & Containers** (`.card, .panel`):
+  - Visual Rules:
+    - `background-color`: `rgb(255, 255, 255)`
+    - `color`: `rgb(10, 10, 10)`
+    - `font-family`: `museo-sans, sans-serif`
+    - `font-size`: `15px`
+    - `font-weight`: `400`
+    - `line-height`: `18.75px`
+    - `letter-spacing`: `0.2px`
+    - `border-top-color`: `rgb(10, 10, 10)`
+    - `border-bottom-color`: `rgb(10, 10, 10)`
+    - `border-left-color`: `rgb(10, 10, 10)`
+    - `border-right-color`: `rgb(10, 10, 10)`
+    - `border-radius`: `15px`
+    - `border-top-left-radius`: `15px`
+    - `border-top-right-radius`: `15px`
+    - `border-bottom-left-radius`: `15px`
+    - `border-bottom-right-radius`: `15px`
+    - `display`: `block`
+    - `flex-direction`: `column`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `357.49px`
+    - `height`: `380px`
+    - `position`: `relative`
+    - `transition-duration`: `0.3s`
+    - `transition-timing-function`: `ease-in-out`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Layout Container (FLEX)** (`div.content`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `color`: `rgb(255, 255, 255)`
+    - `font-family`: `museo-sans, sans-serif`
+    - `font-size`: `15px`
+    - `font-weight`: `400`
+    - `line-height`: `18.75px`
+    - `letter-spacing`: `0.2px`
+    - `padding-top`: `16.875px`
+    - `padding-bottom`: `37.5px`
+    - `padding-left`: `16.875px`
+    - `padding-right`: `16.875px`
+    - `border-top-color`: `rgb(255, 255, 255)`
+    - `border-bottom-color`: `rgb(255, 255, 255)`
+    - `border-left-color`: `rgb(255, 255, 255)`
+    - `border-right-color`: `rgb(255, 255, 255)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `display`: `flex`
+    - `flex-direction`: `column`
+    - `justify-content`: `end`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `357.49px`
+    - `height`: `380px`
+    - `transition-duration`: `0.4s`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Inputs & Form Controls** (`input, textarea, select`):
+  - Visual Rules:
+    - `background-color`: `rgb(255, 255, 255)`
+    - `color`: `rgb(10, 10, 10)`
+    - `font-family`: `museo-sans, sans-serif`
+    - `font-size`: `15px`
+    - `font-weight`: `400`
+    - `line-height`: `22.5px`
+    - `letter-spacing`: `0.2px`
+    - `padding-top`: `5.625px`
+    - `padding-bottom`: `5.625px`
+    - `padding-left`: `11.25px`
+    - `padding-right`: `11.25px`
+    - `border-top-width`: `0.666667px`
+    - `border-top-style`: `solid`
+    - `border-top-color`: `rgb(224, 224, 224)`
+    - `border-bottom-width`: `0.666667px`
+    - `border-bottom-style`: `solid`
+    - `border-bottom-color`: `rgb(224, 224, 224)`
+    - `border-left-width`: `0.666667px`
+    - `border-left-style`: `solid`
+    - `border-left-color`: `rgb(224, 224, 224)`
+    - `border-right-width`: `0.666667px`
+    - `border-right-style`: `solid`
+    - `border-right-color`: `rgb(224, 224, 224)`
+    - `border-radius`: `7.5px`
+    - `border-top-left-radius`: `7.5px`
+    - `border-top-right-radius`: `7.5px`
+    - `border-bottom-left-radius`: `7.5px`
+    - `border-bottom-right-radius`: `7.5px`
+    - `display`: `block`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `512.365px`
+    - `height`: `50.0833px`
+    - `transition-property`: `border-color, box-shadow`
+    - `transition-duration`: `0.15s, 0.15s`
+    - `transition-timing-function`: `ease-in-out, ease-in-out`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Buttons** (`button, .btn`):
+  - Visual Rules:
+    - `background-color`: `rgb(255, 205, 3)`
+    - `color`: `rgb(10, 10, 10)`
+    - `font-family`: `museo-sans, sans-serif`
+    - `font-size`: `15px`
+    - `font-weight`: `700`
+    - `line-height`: `22.5px`
+    - `letter-spacing`: `0.2px`
+    - `text-align`: `center`
+    - `padding-top`: `13.125px`
+    - `padding-bottom`: `13.125px`
+    - `padding-left`: `30.15px`
+    - `padding-right`: `30.15px`
+    - `border-top-width`: `0.666667px`
+    - `border-top-style`: `solid`
+    - `border-top-color`: `rgb(255, 205, 3)`
+    - `border-bottom-width`: `0.666667px`
+    - `border-bottom-style`: `solid`
+    - `border-bottom-color`: `rgb(255, 205, 3)`
+    - `border-left-width`: `0.666667px`
+    - `border-left-style`: `solid`
+    - `border-left-color`: `rgb(255, 205, 3)`
+    - `border-right-width`: `0.666667px`
+    - `border-right-style`: `solid`
+    - `border-right-color`: `rgb(255, 205, 3)`
+    - `border-radius`: `33.75px`
+    - `border-top-left-radius`: `33.75px`
+    - `border-top-right-radius`: `33.75px`
+    - `border-bottom-left-radius`: `33.75px`
+    - `border-bottom-right-radius`: `33.75px`
+    - `display`: `inline-block`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `122.625px`
+    - `height`: `50.0833px`
+    - `transition-property`: `background-color, color, transform`
+    - `transition-duration`: `0.2s, 0.2s, 0.2s`
+    - `transition-timing-function`: `ease, ease, ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+- **Layout Container (FLEX)** (`div.row.align-items-center.border-top.mt-4.py-3`):
+  - Visual Rules:
+    - `background-color`: `rgba(0, 0, 0, 0)`
+    - `color`: `rgb(255, 255, 255)`
+    - `font-family`: `museo-sans, sans-serif`
+    - `font-size`: `15px`
+    - `font-weight`: `400`
+    - `line-height`: `18.75px`
+    - `letter-spacing`: `0.2px`
+    - `padding-top`: `15px`
+    - `padding-bottom`: `15px`
+    - `margin-top`: `22.5px`
+    - `margin-left`: `-11.25px`
+    - `margin-right`: `-11.25px`
+    - `border-top-width`: `0.666667px`
+    - `border-top-style`: `solid`
+    - `border-top-color`: `rgb(224, 224, 224)`
+    - `border-bottom-color`: `rgb(255, 255, 255)`
+    - `border-left-color`: `rgb(255, 255, 255)`
+    - `border-right-color`: `rgb(255, 255, 255)`
+    - `border-radius`: `0px`
+    - `border-top-left-radius`: `0px`
+    - `border-top-right-radius`: `0px`
+    - `border-bottom-left-radius`: `0px`
+    - `border-bottom-right-radius`: `0px`
+    - `display`: `flex`
+    - `align-items`: `center`
+    - `grid-template-columns`: `none`
+    - `grid-template-rows`: `none`
+    - `width`: `1140px`
+    - `height`: `49.4167px`
+    - `transition-timing-function`: `ease`
+  - Behavior Expectation: Interactive states (hover, focus, active) must match design foundations.
+
+## Writing Tone
+Concise, confident, implementation-focused.
+
+## Rules: Do
+- Use semantic design tokens instead of hardcoded hex values in component stylesheets.
+- Ensure every interactive component defines styles for default, hover, focus-visible, active, disabled, loading, and error states.
+- Support responsive viewport behaviors (mobile, tablet, desktop) using fluid flex/grid layouts.
+- Always include QA verification tags for DOM accessibility and conformance checks.
+
+## Rules: Don't
+- Do not introduce one-off spacing, margin, or padding values outside the spacing system scale.
+- Do not allow hidden or low-contrast outlines for keyboard focus indicators.
+- Do not deploy components without explicit accessibility acceptance criteria.
+
+## Guideline Authoring Workflow
+1. Restate design intent in one sentence.
+2. Define foundations and semantic tokens.
+3. Define component anatomy, variants, interactions, and state behavior.
+4. Add accessibility acceptance criteria with pass/fail checks.
+5. Add anti-patterns, migration notes, and edge-case handling.
+6. End with a QA checklist.
+
+## Required Output Structure
+- Context and goals.
+- Design tokens and foundations.
+- Component-level rules (anatomy, variants, states, responsive behavior).
+- Accessibility requirements and testable acceptance criteria.
+- Content and tone standards with examples.
+- Anti-patterns and prohibited implementations.
+- QA checklist.
+
+## Component Rule Expectations
+- Include keyboard, pointer, and touch behavior.
+- Include spacing and typography token requirements.
+- Include long-content, overflow, and empty-state handling.
+- Include known page component density: hero & header sections (223), navigation (223), navigation (223), layout container (flex) (223), navigation (223), buttons (223), layout container (flex) (223), buttons (223), badges & chips (223), layout container (flex) (223), badges & chips (223), buttons (223), layout container (grid) (223), buttons (223), layout container (flex) (223), layout container (flex) (223), buttons (223), layout container (flex) (223), buttons (223), buttons (223), cards & containers (223), layout container (flex) (223), inputs & form controls (223), buttons (223), layout container (flex) (223).
+
+- Extraction diagnostics: Limited typography variety detected; size scale may need manual refinement.
+
+## Quality Gates
+- Every non-negotiable rule must use "must".
+- Every recommendation should use "should".
+- Every accessibility rule must be testable in implementation.
+- Teams should prefer system consistency over local visual exceptions.

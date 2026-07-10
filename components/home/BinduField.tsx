@@ -77,7 +77,14 @@ const EASE_OUT = (t: number) => 1 - Math.pow(1 - t, 3);
 type Phase = "ambient" | "in" | "hold" | "out";
 const FORMATIONS = ["grid", "distribution", "network"] as const;
 
-export function BinduField({ hostRef }: { hostRef: React.RefObject<HTMLElement | null> }) {
+export function BinduField({
+  hostRef,
+  onDark = false,
+}: {
+  hostRef: React.RefObject<HTMLElement | null>;
+  /** On dark (violet) surfaces the base points render in bone, not violet */
+  onDark?: boolean;
+}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -87,7 +94,9 @@ export function BinduField({ hostRef }: { hostRef: React.RefObject<HTMLElement |
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const violet = readToken("--violet", "#34006F");
+    const violet = onDark
+      ? readToken("--bone", "#FAF7F1")
+      : readToken("--violet", "#34006F");
     const ember = readToken("--ember", "#FE5000");
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isTouch = window.matchMedia("(pointer: coarse)").matches;
@@ -536,7 +545,7 @@ export function BinduField({ hostRef }: { hostRef: React.RefObject<HTMLElement |
         host.removeEventListener("pointerleave", onPointerLeave);
       }
     };
-  }, [hostRef]);
+  }, [hostRef, onDark]);
 
   return (
     <canvas

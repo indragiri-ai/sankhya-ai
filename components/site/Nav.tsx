@@ -92,6 +92,10 @@ export function Nav() {
     [pathname]
   );
 
+  // Home opens on the dark hero: until the page scrolls, the nav rides it
+  // with bone text and the bone-सं logo variant.
+  const onDarkHero = pathname === "/" && !scrolled;
+
   return (
     <header className="no-print">
       <nav
@@ -104,7 +108,10 @@ export function Nav() {
         )}
       >
         <div className="mx-auto flex h-full max-w-[1200px] items-center justify-between px-[var(--s-6)]">
-          <Logo className="text-ink" />
+          <Logo
+            className={onDarkHero ? "text-bone" : "text-ink"}
+            onDark={onDarkHero}
+          />
 
           {/* Desktop links */}
           <div className="hidden items-center gap-[var(--s-8)] md:flex">
@@ -115,7 +122,8 @@ export function Nav() {
                     href={link.href}
                     aria-current={isActive(link.href) ? "page" : undefined}
                     className={cn(
-                      "link-sweep text-[0.9375rem] font-[500] text-ink",
+                      "link-sweep text-[0.9375rem] font-[500]",
+                      onDarkHero ? "text-bone" : "text-ink",
                       isActive(link.href) &&
                         "underline decoration-ember decoration-2 underline-offset-6"
                     )}
@@ -128,7 +136,7 @@ export function Nav() {
             <Magnetic>
               <Link
                 href="/contact"
-                className="inline-flex items-center rounded-[var(--r-sm)] bg-ember px-[var(--s-4)] py-[var(--s-2)] text-[0.875rem] font-[500] leading-[1.5] text-bone transition-opacity duration-[var(--dur-fast)] hover:opacity-90"
+                className="inline-flex items-center rounded-full bg-ember px-[var(--s-6)] py-[var(--s-3)] text-[0.875rem] font-[600] leading-[1.5] text-white transition-[background-color] duration-[var(--dur-fast)] hover:bg-ember-text"
               >
                 Start a conversation
               </Link>
@@ -147,13 +155,15 @@ export function Nav() {
           >
             <span
               className={cn(
-                "block h-[1.5px] w-6 bg-ink transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out)]",
+                "block h-[1.5px] w-6 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out)]",
+                onDarkHero ? "bg-bone" : "bg-ink",
                 open && "translate-y-[3.75px] rotate-45 bg-bone"
               )}
             />
             <span
               className={cn(
-                "block h-[1.5px] w-6 bg-ink transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out)]",
+                "block h-[1.5px] w-6 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out)]",
+                onDarkHero ? "bg-bone" : "bg-ink",
                 open && "-translate-y-[3.75px] -rotate-45 bg-bone"
               )}
             />

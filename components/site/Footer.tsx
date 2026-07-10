@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SERVICES } from "@/lib/services";
 import { CONTACT, LEGAL_ENTITY } from "@/lib/constants";
+import { asset } from "@/lib/asset";
 
 /**
  * Footer (Build Book §4, Phase 2 as-built): --ink background, bone/grey text.
@@ -100,11 +101,21 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-[var(--s-16)] flex flex-col gap-[var(--s-3)] border-t border-bone/10 pt-[var(--s-6)] sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-small text-grey-400">
-            © {new Date().getFullYear()} {LEGAL_ENTITY}. All rights reserved.
+        <div className="mt-[var(--s-16)] flex flex-col gap-[var(--s-4)] border-t border-bone/10 pt-[var(--s-6)] sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-[var(--s-4)]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={asset("/logo-nav-dark.png")}
+              alt="Sankhya AI"
+              className="h-[26px] w-auto"
+            />
+            <p className="text-small text-grey-400">
+              © {new Date().getFullYear()} {LEGAL_ENTITY}. All rights reserved.
+            </p>
+          </div>
+          <p className="font-mono text-small text-grey-400">
+            Your Intelligence Partner · Built in Nepal
           </p>
-          <p className="font-mono text-small text-grey-400">Built in Nepal</p>
         </div>
       </div>
     </footer>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/components/motion/Reveal";
 import { CtaBand } from "@/components/site/CtaBand";
+import { MissionVision } from "@/components/site/MissionVision";
 import { TeamGrid } from "@/components/about/TeamGrid";
 
 export const metadata: Metadata = {
@@ -98,6 +99,11 @@ export default function AboutPage() {
           </p>
         </Reveal>
       </div>
+
+      {/* Mission & vision — shared component with the homepage;
+          [DRAFT] copy pending the re-uploaded company profile deck */}
+      <MissionVision />
+
       <CtaBand />
     </>
   );

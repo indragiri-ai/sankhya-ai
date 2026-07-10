@@ -13,13 +13,9 @@ import { Reveal } from "@/components/motion/Reveal";
  * omitted until the client states one verbatim.
  */
 
-// [PLACEHOLDER] — sample marks for full-site preview only; replace with
-// exact certification/partnership names from the client, no paraphrase.
-const MARKS: string[] = [
-  "[SAMPLE] ISO/IEC 27001",
-  "[SAMPLE] Registered Government Vendor",
-  "[SAMPLE] AWS Partner",
-];
+// [PLACEHOLDER] — populate with exact certification/partnership names from
+// the client (expected in the re-uploaded company profile deck), no paraphrase.
+const MARKS: string[] = [];
 
 export function InstitutionsBlock() {
   return (
@@ -43,8 +39,8 @@ export function InstitutionsBlock() {
           <Reveal step={1}>
             <p className="text-body measure text-grey-600">
               We are based in Nepal and build for organizations that operate
-              here — in the languages, systems, and procurement processes
-              they actually use — while holding the engineering to an
+              here — within the systems, constraints, and procurement
+              processes they actually use — while holding the work to an
               international standard. Every system is handed over with the
               material your own team needs to run it.
             </p>

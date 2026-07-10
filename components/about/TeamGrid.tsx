@@ -3,41 +3,71 @@ import { asset } from "@/lib/asset";
 import { SectionHeading } from "@/components/site/SectionHeading";
 
 /**
- * TeamGrid (About page, added 2026-07-09 on client request) — 6 team
- * members + 4 advisors/mentors.
- *
- * [PLACEHOLDER] — every name and bio line below is dummy content for the
- * full-site preview. The client will supply real names, roles, and photos;
- * until then each card renders a token-true geometric portrait mark (violet
- * ring + ember bindu, rotated per index — same family as app/icon.svg), NOT
- * a fake photo. When real photos arrive, drop them in /public/team and set
- * `photo` on each entry.
+ * TeamGrid (About page) — real profiles since 2026-07-10, from the client's
+ * Team_profile.docx (edited for length; every credential as supplied).
+ * Photos pending: cards render a token-true geometric mark until the client
+ * uploads photos to /public/team (then set `photo` per entry).
+ * Advisors section awaits the re-uploaded company profile deck —
+ * [PLACEHOLDER] entries until then.
  */
 
 type Person = {
   name: string;
   role: string;
+  credential: string;
+  affiliation: string;
   /** path under /public/team once the real photo arrives; null → geometric mark */
   photo: string | null;
 };
 
-// [PLACEHOLDER] — dummy names; replace with real people, keep order = seniority.
 const TEAM: Person[] = [
-  { name: "[Full Name]", role: "Founder & Chief Executive", photo: null },
-  { name: "[Full Name]", role: "Co-founder & Technical Lead", photo: null },
-  { name: "[Full Name]", role: "Lead Data Engineer", photo: null },
-  { name: "[Full Name]", role: "Machine Learning Engineer", photo: null },
-  { name: "[Full Name]", role: "Data Analyst", photo: null },
-  { name: "[Full Name]", role: "Product & Operations", photo: null },
+  {
+    name: "Bishu Giri",
+    role: "Public Policy & Data Analytics",
+    credential: "MS Public Policy & Data Analytics, Carnegie Mellon University",
+    affiliation: "Consultant, World Bank — Washington, DC",
+    photo: null,
+  },
+  {
+    name: "Dr. Ram Narayan Shrestha",
+    role: "Economist & Research Specialist",
+    credential: "PhD Economics, South Asian University",
+    affiliation: "Sankhya — formerly UNDP, ILO, IWMI",
+    photo: null,
+  },
+  {
+    name: "Indra Giri",
+    role: "Data Analyst & Research Lead",
+    credential: "MA Economics, South Asian University",
+    affiliation: "Sankhya — formerly World Vision International",
+    photo: null,
+  },
+  {
+    name: "Dr. Krishna Sharma",
+    role: "Economist & Policy Analyst",
+    credential: "PhD Economics, Clemson University",
+    affiliation: "Postdoctoral Fellow, Hoover Institution, Stanford",
+    photo: null,
+  },
+  {
+    name: "Dr. Praval Sharma",
+    role: "Computer Scientist — NLP & Data Mining",
+    credential: "PhD Computer Science, University of Nebraska–Lincoln",
+    affiliation: "University of Nebraska at Omaha",
+    photo: null,
+  },
+  {
+    name: "Sumit Sharma",
+    role: "Economist & Data Analytics",
+    credential: "Economics, Delhi School of Economics",
+    affiliation: "ICICI Bank — formerly EY, Capgemini",
+    photo: null,
+  },
 ];
 
-// [PLACEHOLDER] — dummy advisor entries; replace with real names + one-line affiliations.
-const ADVISORS: Person[] = [
-  { name: "[Full Name]", role: "Advisor — Data & AI", photo: null },
-  { name: "[Full Name]", role: "Advisor — Banking & Finance", photo: null },
-  { name: "[Full Name]", role: "Academic Mentor", photo: null },
-  { name: "[Full Name]", role: "Advisor — Public Sector", photo: null },
-];
+// [PLACEHOLDER] — advisors/mentors arrive with the re-uploaded company
+// profile deck; dummy entries hidden until then.
+const ADVISORS: Person[] = [];
 
 /** Geometric stand-in portrait: violet ring, ember bindu rotated per index. */
 function PortraitMark({ index }: { index: number }) {
@@ -57,16 +87,6 @@ function PortraitMark({ index }: { index: number }) {
         <g transform={`rotate(${angle} 48 48)`}>
           <circle cx="48" cy="22" r="4" fill="var(--ember)" />
         </g>
-        <text
-          x="48"
-          y="86"
-          textAnchor="middle"
-          fontSize="8"
-          fill="var(--grey-400)"
-          fontFamily="var(--font-geist-mono)"
-        >
-          {String(index + 1).padStart(2, "0")}
-        </text>
       </svg>
     </div>
   );
@@ -93,10 +113,14 @@ function PersonCard({
       ) : (
         <PortraitMark index={index} />
       )}
-      <p className="mt-[var(--s-3)] text-body font-[500] text-ink">
+      <p className="mt-[var(--s-3)] text-body font-[550] text-ink">
         {person.name}
       </p>
       <p className="mt-[var(--s-1)] text-small text-grey-600">{person.role}</p>
+      <p className="mt-[var(--s-2)] text-small text-grey-400">
+        {person.credential}
+      </p>
+      <p className="text-small text-grey-400">{person.affiliation}</p>
     </Reveal>
   );
 }
@@ -106,27 +130,32 @@ export function TeamGrid() {
     <section className="mt-[var(--s-24)]" aria-label="Team">
       <SectionHeading
         eyebrow="Team"
-        title="The people doing the counting" /* [PLACEHOLDER — verify] */
+        title="The people doing the counting"
+        lead="Economists, data scientists, and researchers — trained at Carnegie Mellon, Clemson, Stanford, Nebraska, and South Asian University, working across Nepal, India, and the United States."
       />
       <ul className="mt-[var(--s-12)] grid grid-cols-2 gap-x-[var(--s-6)] gap-y-[var(--s-8)] sm:grid-cols-3">
         {TEAM.map((p, i) => (
-          <PersonCard key={`team-${i}`} person={p} index={i} step={i} />
+          <PersonCard key={p.name} person={p} index={i} step={i} />
         ))}
       </ul>
 
-      <p className="mt-[var(--s-16)] text-eyebrow text-grey-600">
-        Advisors &amp; mentors
-      </p>
-      <ul className="mt-[var(--s-6)] grid grid-cols-2 gap-x-[var(--s-6)] gap-y-[var(--s-8)] sm:grid-cols-4">
-        {ADVISORS.map((p, i) => (
-          <PersonCard
-            key={`advisor-${i}`}
-            person={p}
-            index={i + TEAM.length}
-            step={i}
-          />
-        ))}
-      </ul>
+      {ADVISORS.length > 0 ? (
+        <>
+          <p className="mt-[var(--s-16)] text-eyebrow text-grey-600">
+            Advisors &amp; mentors
+          </p>
+          <ul className="mt-[var(--s-6)] grid grid-cols-2 gap-x-[var(--s-6)] gap-y-[var(--s-8)] sm:grid-cols-4">
+            {ADVISORS.map((p, i) => (
+              <PersonCard
+                key={p.name}
+                person={p}
+                index={i + TEAM.length}
+                step={i}
+              />
+            ))}
+          </ul>
+        </>
+      ) : null}
     </section>
   );
 }
