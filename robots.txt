@@ -1,0 +1,6 @@
+User-Agent: *
+Allow: /
+Disallow: /styleguide
+Disallow: /api/
+
+Sitemap: https://indragiri-ai.github.io/sankhya-ai/sitemap.xml
