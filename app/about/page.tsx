@@ -56,9 +56,9 @@ export default function AboutPage() {
           <Reveal step={0}>
             <p className="devanagari text-[clamp(4rem,8vw,7rem)] font-[550] leading-none text-violet">
               <span lang="sa" aria-hidden="true">
-                सांख्य
+                संख्या
               </span>
-              <span className="sr-only">Sāṅkhya</span>
+              <span className="sr-only">Sankhya</span>
             </p>
           </Reveal>
           <div className="flex flex-col gap-[var(--s-4)]">
@@ -67,20 +67,18 @@ export default function AboutPage() {
             </Reveal>
             <Reveal step={2}>
               <p className="text-body-lg measure text-ink">
-                Sāṅkhya (सांख्य) is one of the oldest systematic schools of
-                Indian philosophy — its name derives from <em>saṃkhyā</em>,
-                “number” or “enumeration.” The school&rsquo;s method was to
-                understand the world by counting and categorizing it: list
-                what exists, order it, reason from the inventory.
+                Sankhya (संख्या) means “number.” The method the name points
+                to is old and simple: understand the world by counting and
+                categorizing it — list what exists, order it, reason from
+                the inventory.
               </p>
             </Reveal>
             <Reveal step={3}>
               <p className="text-body-lg measure text-grey-600">
-                That is a fair description of data work, twenty-five
-                centuries early. A company in Nepal building analytics and AI
-                systems claims that lineage deliberately: the discipline of
-                enumeration — measure first, conclude second — is the whole
-                practice. The name is a standard to be held to.
+                That is a fair description of data work. A company in Nepal
+                building research, analytics, and AI systems claims that
+                discipline deliberately: measure first, conclude second.
+                The name is a standard to be held to.
               </p>
             </Reveal>
           </div>

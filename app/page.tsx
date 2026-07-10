@@ -5,6 +5,7 @@ import { ServicesGrid } from "@/components/home/ServicesGrid";
 import { ApproachSequence } from "@/components/home/ApproachSequence";
 import { Outcomes } from "@/components/home/Outcomes";
 import { InstitutionsBlock } from "@/components/home/InstitutionsBlock";
+import { StatsBand } from "@/components/home/StatsBand";
 import { MissionVision } from "@/components/site/MissionVision";
 import { CtaBand } from "@/components/site/CtaBand";
 
@@ -22,6 +23,7 @@ export default function Home() {
       <Hero />
       <CredStrip />
       <MissionVision />
+      <StatsBand />
       <ServicesGrid />
       <ApproachSequence />
       <Outcomes />

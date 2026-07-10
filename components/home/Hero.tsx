@@ -11,9 +11,8 @@ import { PrimaryButton, OutlineButton } from "@/components/site/Buttons";
  * - Full-bleed dark surface: violet → ink radial gradient, BinduField in
  *   bone/ember on top, content above both.
  * - Stack: ember eyebrow (the brand tagline) → display headline with one
- *   ember word → one-sentence sub → pill CTA row → fact strip.
- * - Fact strip figures are real: Est. 2019 (company seal), six research
- *   engagements (Projects.docx), four institutional partners (CredStrip).
+ *   ember word → one-sentence sub → pill CTA row. (The fact strip moved to
+ *   its own StatsBand section on 2026-07-10, per client.)
  * - Height: clamp(640px, 100svh, 900px); svh avoids the mobile URL-bar jump.
  */
 export function Hero() {
@@ -72,25 +71,6 @@ export function Hero() {
               <PrimaryButton href="/contact">Start a conversation</PrimaryButton>
               <OutlineButton href="/services">Explore our services</OutlineButton>
             </div>
-          </Reveal>
-
-          {/* Fact strip — every figure defensible, no invented metrics */}
-          <Reveal step={4}>
-            <dl className="mt-[var(--s-8)] flex flex-wrap items-center justify-center gap-x-[var(--s-12)] gap-y-[var(--s-6)] border-t border-bone/15 pt-[var(--s-6)] md:justify-start">
-              {[
-                { value: "2019", label: "Established" },
-                { value: "06", label: "Research engagements" },
-                { value: "04", label: "Institutional partners" },
-              ].map((f) => (
-                <div key={f.label} className="flex flex-col items-center gap-[var(--s-1)] md:items-start">
-                  <dt className="sr-only">{f.label}</dt>
-                  <dd className="text-figure text-[1.75rem] leading-none text-bone">
-                    {f.value}
-                  </dd>
-                  <dd className="text-small text-bone/60">{f.label}</dd>
-                </div>
-              ))}
-            </dl>
           </Reveal>
         </div>
       </div>

@@ -5,7 +5,7 @@ import { asset } from "@/lib/asset";
 
 /**
  * Footer (Build Book §4, Phase 2 as-built): --ink background, bone/grey text.
- * Signature detail: the Devanagari wordmark सांख्य set at display scale in
+ * Signature detail: the Devanagari wordmark संख्या set at display scale in
  * --grey-600 — the one expressive moment. It uses the documented system
  * Devanagari fallback stack (Mukta only ships if Nepali is approved) and
  * carries lang="sa" plus a visually-hidden transliteration for screen readers.
@@ -26,9 +26,9 @@ export function Footer() {
         {/* Devanagari typographic object */}
         <p className="devanagari select-none text-right text-[clamp(4rem,12vw,9rem)] font-[550] leading-none text-grey-600">
           <span lang="sa" aria-hidden="true">
-            सांख्य
+            संख्या
           </span>
-          <span className="sr-only">Sāṅkhya — enumeration</span>
+          <span className="sr-only">Sankhya — number</span>
         </p>
 
         <div className="mt-[var(--s-12)] grid grid-cols-1 gap-[var(--s-12)] sm:grid-cols-2 lg:grid-cols-4">

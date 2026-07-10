@@ -21,8 +21,7 @@ type Partner = {
 };
 
 const PARTNERS: Partner[] = [
-  // [PLACEHOLDER] — logo file not yet uploaded (public/logos/README.md)
-  { name: "World Vision International Nepal", logo: null },
+  { name: "World Vision International Nepal", logo: "/logos/world-vision.png" },
   {
     name: "University of Pittsburgh",
     logo: "/logos/university-of-pittsburgh.avif",
