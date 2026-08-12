@@ -20,19 +20,30 @@ const STATS = [
   { value: 6, label: "Institutions partnered" },
 ];
 
-export function StatsRow({ startStep = 0 }: { startStep?: number }) {
+export function StatsRow({
+  startStep = 0,
+  onDark = false,
+}: {
+  startStep?: number;
+  /** the hero is a dark surface as of 2026-08-13 */
+  onDark?: boolean;
+}) {
   return (
     <dl className="grid grid-cols-3 gap-x-[var(--s-4)] sm:gap-x-[var(--s-8)]">
       {STATS.map((s, i) => (
-        <Reveal
-          key={s.label}
-          step={startStep + i}
-          className="flex flex-col border-t border-rule-strong pt-[var(--s-4)]"
-        >
-          <dd className="text-figure text-[clamp(2rem,4.5vw,2.75rem)] font-[400] leading-none text-violet">
+        <Reveal key={s.label} step={startStep + i} className="flex flex-col">
+          <dd
+            className={`text-figure text-[clamp(1.75rem,4vw,2.5rem)] font-[400] leading-none ${
+              onDark ? "text-bone" : "text-violet"
+            }`}
+          >
             <Counter value={s.value} />
           </dd>
-          <dt className="text-small mt-[var(--s-2)] max-w-[18ch] text-grey-600">
+          <dt
+            className={`text-small mt-[var(--s-2)] max-w-[18ch] ${
+              onDark ? "text-bone/60" : "text-grey-600"
+            }`}
+          >
             {s.label}
           </dt>
         </Reveal>

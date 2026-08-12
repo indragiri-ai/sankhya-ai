@@ -24,16 +24,27 @@ const BASE =
 export function PrimaryButton({
   href,
   children,
+  onDark = false,
   className,
 }: {
   href: string;
   children: React.ReactNode;
+  /** On the dark hero, violet-on-violet has almost no contrast. A bone fill
+   *  reads as the brightest thing on the panel — which is what a primary CTA
+   *  should be — without spending ember on it. */
+  onDark?: boolean;
   className?: string;
 }) {
   return (
     <Link
       href={href}
-      className={cn(BASE, "bg-violet text-bone hover:bg-ink", className)}
+      className={cn(
+        BASE,
+        onDark
+          ? "bg-bone text-violet-deep hover:bg-white"
+          : "bg-violet text-bone hover:bg-ink",
+        className
+      )}
     >
       {children}
     </Link>

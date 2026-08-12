@@ -91,10 +91,11 @@ export function Nav() {
     [pathname]
   );
 
-  // NOTE: the home hero was a dark full-bleed surface until 2026-08-12 and
-  // the nav used to ride it in bone until the first scroll. The redesign made
-  // the hero a light paper field, so that mode is gone entirely — the nav is
-  // ink-on-bone on every route from first paint.
+  // The home hero is a dark full-bleed panel again (2026-08-13), so the nav
+  // rides it in bone until the page scrolls, then flips to ink on bone. This
+  // mode existed before the 2026-08-12 redesign, was removed when that
+  // redesign made the hero light, and is restored here with it.
+  const onDarkHero = pathname === "/" && !scrolled;
 
   return (
     <header className="no-print">
@@ -108,7 +109,7 @@ export function Nav() {
         )}
       >
         <div className="mx-auto flex h-full max-w-[1200px] items-center justify-between px-[var(--s-6)]">
-          <Logo className="text-ink" />
+          <Logo className={onDarkHero ? "text-bone" : "text-ink"} onDark={onDarkHero} />
 
           {/* Desktop links. The active page is marked with a 2px ember tick
               above the label rather than an underline — it reads as an index
@@ -122,8 +123,11 @@ export function Nav() {
                     aria-current={isActive(link.href) ? "page" : undefined}
                     className={cn(
                       "relative block py-[var(--s-2)] text-[0.875rem] font-[500] tracking-[-0.005em]",
-                      "text-ink/75 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out)] hover:text-ink",
-                      isActive(link.href) && "text-ink"
+                      "transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out)]",
+                      onDarkHero
+                        ? "text-bone/80 hover:text-bone"
+                        : "text-ink/75 hover:text-ink",
+                      isActive(link.href) && (onDarkHero ? "text-bone" : "text-ink")
                     )}
                   >
                     <span className="link-sweep">{link.label}</span>
@@ -143,13 +147,15 @@ export function Nav() {
                 "inline-flex items-center rounded-[var(--r-sm)] border px-[var(--s-6)] py-[var(--s-3)]",
                 "text-[0.8125rem] font-[550] leading-[1.5] tracking-[-0.005em]",
                 "transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out)]",
-                // Outline at the top of the page, filling in once the reader
-                // scrolls. A solid violet button was the most saturated thing
-                // above the fold and pulled the eye before the headline did;
-                // it earns its fill after the headline has been read.
-                scrolled
-                  ? "border-violet bg-violet text-bone hover:border-ink hover:bg-ink"
-                  : "border-rule-strong text-ink hover:border-violet hover:text-violet"
+                // Outline while it sits over the hero, filling in once the
+                // reader scrolls past it. A solid button at the top competed
+                // with the headline for first attention; it earns its fill
+                // after the headline has been read.
+                onDarkHero
+                  ? "border-bone/40 text-bone hover:border-bone hover:bg-bone/10"
+                  : scrolled
+                    ? "border-violet bg-violet text-bone hover:border-ink hover:bg-ink"
+                    : "border-rule-strong text-ink hover:border-violet hover:text-violet"
               )}
             >
               Start a conversation
@@ -169,14 +175,14 @@ export function Nav() {
             <span
               className={cn(
                 "block h-[1.5px] w-6 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out)]",
-                "bg-ink",
+                onDarkHero ? "bg-bone" : "bg-ink",
                 open && "translate-y-[3.75px] rotate-45 bg-bone"
               )}
             />
             <span
               className={cn(
                 "block h-[1.5px] w-6 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out)]",
-                "bg-ink",
+                onDarkHero ? "bg-bone" : "bg-ink",
                 open && "-translate-y-[3.75px] -rotate-45 bg-bone"
               )}
             />

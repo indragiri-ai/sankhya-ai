@@ -165,6 +165,24 @@
   }
 }
 
+/* Hero only. The category (Fractal, C3.ai, Scale AI) opens on very large
+   type; this sits a step above --text-display without returning to the 84px
+   that read as a poster. */
+@utility text-hero {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 8vw, 3.25rem);
+  line-height: 1.04;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+  font-variation-settings: "opsz" 60;
+  @media (min-width: 768px) {
+    font-size: clamp(3rem, 4.8vw, 4.25rem);
+    line-height: 1.01;
+    letter-spacing: -0.028em;
+    font-variation-settings: "opsz" 72;
+  }
+}
+
 @utility text-h1 {
   font-family: var(--font-serif);
   font-size: clamp(1.875rem, 5.2vw, 2.25rem);
@@ -407,6 +425,53 @@ body {
 /* Anchor targets land below the fixed nav */
 [id] {
   scroll-margin-top: calc(var(--nav-h) + var(--s-4));
+}
+
+/* ============================================================
+   HERO VISUAL (components/home/HeroViz.tsx)
+   The trend line draws left→right, then the observations land in
+   sequence. Pure CSS so the static export ships no extra JS.
+   ============================================================ */
+
+.hero-viz-trend {
+  stroke-dasharray: 420;
+  stroke-dashoffset: 420;
+  animation: viz-draw 1100ms var(--ease-out) 200ms forwards;
+}
+
+.hero-viz-points circle {
+  opacity: 0;
+  animation: viz-pop var(--dur-base) var(--ease-out) forwards;
+}
+
+@keyframes viz-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes viz-pop {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 0.75;
+    transform: translateY(0);
+  }
+}
+
+/* The chart is meaning, not decoration, so it still renders in full for
+   readers who ask for less motion — it simply arrives already drawn. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-viz-trend {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+  .hero-viz-points circle {
+    opacity: 0.75;
+    animation: none;
+  }
 }
 
 /* Print: institutional buyers print things (Phase 10 §C.3).
