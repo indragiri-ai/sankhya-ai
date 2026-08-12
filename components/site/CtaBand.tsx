@@ -20,15 +20,15 @@ export function CtaBand({
 }) {
   return (
     <section data-surface="dark" className="bg-violet-deep">
-      <div className="mx-auto max-w-[1200px] px-[var(--s-6)] py-[var(--s-24)] md:py-[var(--s-32)]">
+      <div className="mx-auto max-w-[1200px] px-[var(--s-6)] section-pad">
         <Reveal step={0}>
-          <span aria-hidden="true" className="tick mb-[var(--s-8)]" />
+          <span aria-hidden="true" className="tick mb-[var(--s-6)]" />
         </Reveal>
         <Reveal step={1}>
-          <h2 className="text-h2 max-w-[20ch] text-bone">{heading}</h2>
+          <h2 className="text-h2 max-w-[22ch] text-bone">{heading}</h2>
         </Reveal>
         <Reveal step={2}>
-          <div className="mt-[var(--s-12)] flex flex-wrap items-center gap-x-[var(--s-8)] gap-y-[var(--s-4)]">
+          <div className="mt-[var(--s-8)] flex flex-wrap items-center gap-x-[var(--s-8)] gap-y-[var(--s-4)]">
             <OutlineButton href="/contact" onDark>
               {buttonLabel}
             </OutlineButton>

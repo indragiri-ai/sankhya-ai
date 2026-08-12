@@ -129,14 +129,14 @@ function PersonCard({
 
 export function TeamGrid() {
   return (
-    <section className="mt-[var(--s-24)]" aria-label="Team">
+    <section className="mt-[var(--section-y-lg)] px-[var(--s-6)]" aria-label="Team">
       <SectionHeading
         index="03"
         eyebrow="Team"
         title="The people doing the counting"
         lead="Economists, data scientists, and researchers — trained at Carnegie Mellon, Clemson, Stanford, Nebraska, and South Asian University, working across Nepal, India, and the United States."
       />
-      <ul className="mt-[var(--s-16)] grid grid-cols-2 gap-x-[var(--s-8)] gap-y-[var(--s-12)] sm:grid-cols-3">
+      <ul className="mt-[var(--heading-gap)] grid grid-cols-2 gap-x-[var(--s-8)] gap-y-[var(--s-12)] sm:grid-cols-3">
         {TEAM.map((p, i) => (
           <PersonCard key={p.name} person={p} index={i} step={i} />
         ))}
@@ -144,7 +144,7 @@ export function TeamGrid() {
 
       {ADVISORS.length > 0 ? (
         <>
-          <p className="mt-[var(--s-16)] text-eyebrow text-grey-600">
+          <p className="mt-[var(--heading-gap)] text-eyebrow text-grey-600">
             Advisors &amp; mentors
           </p>
           <ul className="mt-[var(--s-6)] grid grid-cols-2 gap-x-[var(--s-6)] gap-y-[var(--s-8)] sm:grid-cols-4">

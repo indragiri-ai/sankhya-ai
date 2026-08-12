@@ -21,14 +21,14 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
-      <div className="mx-auto max-w-[1200px] pb-[var(--s-24)] md:pb-[var(--s-32)]">
+      <div className="mx-auto max-w-[1200px] pb-[var(--section-y)] md:pb-[var(--section-y-lg)]">
         <PageHeader
           eyebrow="Services"
           title="What we build, and what you receive."
           lead="Five pillars, one standard: every engagement ends in something your organization can hold, run, and audit."
         />
 
-        <div className="flex flex-col gap-[var(--s-24)] px-[var(--s-6)]">
+        <div className="flex flex-col gap-[var(--s-16)] px-[var(--s-6)]">
           {SERVICES.map((service) => (
             <section
               key={service.slug}

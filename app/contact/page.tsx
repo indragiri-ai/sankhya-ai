@@ -18,7 +18,7 @@ export const metadata: Metadata = {
  */
 export default function ContactPage() {
   return (
-    <div className="mx-auto max-w-[1200px] pb-[var(--s-24)] md:pb-[var(--s-32)]">
+    <div className="mx-auto max-w-[1200px] pb-[var(--section-y)] md:pb-[var(--section-y-lg)]">
       <PageHeader
         eyebrow="Contact"
         title="Start a conversation."

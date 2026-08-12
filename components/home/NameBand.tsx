@@ -15,13 +15,13 @@ import { Reveal } from "@/components/motion/Reveal";
 export function NameBand() {
   return (
     <section data-surface="dark" className="bg-violet-deep">
-      <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-[var(--s-12)] px-[var(--s-6)] py-[var(--s-24)] md:grid-cols-2 md:gap-[var(--s-16)] md:py-[var(--s-32)]">
+      <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-[var(--s-12)] px-[var(--s-6)] section-pad md:grid-cols-2 md:gap-[var(--s-16)]">
         <Reveal step={0}>
           {/* Now set in Tiro Devanagari Hindi — a real Devanagari text serif
               with calligraphic contrast, loaded with the page. This was the
               site's most distinctive asset rendering in whatever the visitor's
               OS supplied; on Windows that meant Mangal. Single 400 weight. */}
-          <p className="devanagari text-[clamp(5rem,10vw,8.5rem)] leading-[1.15] text-bone">
+          <p className="devanagari text-[clamp(3.5rem,7vw,5.5rem)] leading-[1.15] text-bone">
             <span lang="sa" aria-hidden="true">
               संख्या
             </span>

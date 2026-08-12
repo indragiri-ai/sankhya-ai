@@ -28,7 +28,8 @@ export function PageHeader({
   return (
     <header
       className={cn(
-        "px-[var(--s-6)] pb-[var(--s-16)] pt-[calc(var(--nav-h)+var(--s-16))] md:pb-[var(--s-24)]",
+        "px-[var(--s-6)] pb-[var(--section-y)] pt-[calc(var(--nav-h)+var(--s-8))]",
+        "md:pb-[var(--section-y-lg)] md:pt-[calc(var(--nav-h)+var(--s-12))]",
         className
       )}
     >
@@ -39,11 +40,11 @@ export function PageHeader({
         </div>
       </Reveal>
       <Reveal step={1}>
-        <h1 className="text-h1 mt-[var(--s-8)] max-w-[18ch] text-violet">{title}</h1>
+        <h1 className="text-h1 mt-[var(--s-6)] max-w-[20ch] text-violet">{title}</h1>
       </Reveal>
       {lead ? (
         <Reveal step={2}>
-          <p className="text-body-lg measure-lead mt-[var(--s-6)] text-grey-600">{lead}</p>
+          <p className="text-body-lg measure-lead mt-[var(--s-4)] text-grey-600">{lead}</p>
         </Reveal>
       ) : null}
     </header>

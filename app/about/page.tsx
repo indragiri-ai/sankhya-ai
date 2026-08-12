@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <div className="mx-auto max-w-[1200px] pb-[var(--s-24)] md:pb-[var(--s-32)]">
+      <div className="mx-auto max-w-[1200px] pb-[var(--section-y)] md:pb-[var(--section-y-lg)]">
         <PageHeader eyebrow="About" title="A data company with an old name." />
 
         {/* Founding story — [PLACEHOLDER] sample copy for full-site preview;
@@ -48,9 +48,9 @@ export default function AboutPage() {
         </Reveal>
 
         {/* The name, told in full — the Phase 4 band grows into a passage */}
-        <section className="mt-[var(--s-24)] grid grid-cols-1 items-start gap-[var(--s-12)] px-[var(--s-6)] md:grid-cols-2">
+        <section className="mt-[var(--section-y-lg)] grid grid-cols-1 items-start gap-[var(--s-12)] px-[var(--s-6)] md:grid-cols-2">
           <Reveal step={0}>
-            <p className="devanagari text-[clamp(4rem,8vw,7rem)] leading-[1.15] text-violet">
+            <p className="devanagari text-[clamp(3rem,6vw,4.5rem)] leading-[1.15] text-violet">
               <span lang="sa" aria-hidden="true">
                 संख्या
               </span>
@@ -84,7 +84,7 @@ export default function AboutPage() {
         <TeamGrid />
 
         {/* Location — concrete, not aspirational */}
-        <Reveal step={0} className="mt-[var(--s-24)]">
+        <Reveal step={0} className="mt-[var(--section-y-lg)] px-[var(--s-6)]">
           <p className="text-body-lg measure text-grey-600">
             We are based in Kathmandu and work with organizations in Nepal —
             businesses, institutions, and the public sector — as well as

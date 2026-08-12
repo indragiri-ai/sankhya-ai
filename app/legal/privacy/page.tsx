@@ -15,7 +15,7 @@ export const metadata: Metadata = {
  */
 export default function PrivacyPage() {
   return (
-    <div className="mx-auto max-w-[1200px] px-[var(--s-6)] pb-[var(--s-24)] pt-[calc(var(--nav-h)+var(--s-16))]">
+    <div className="mx-auto max-w-[1200px] px-[var(--s-6)] pb-[var(--section-y)] pt-[calc(var(--nav-h)+var(--s-16))]">
       <p className="inline-block rounded-[var(--r-sm)] border border-ember-text/40 px-[var(--s-3)] py-[var(--s-2)] font-mono text-small text-ember-text">
         DRAFT — REQUIRES LEGAL REVIEW
       </p>

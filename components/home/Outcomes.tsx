@@ -15,9 +15,9 @@ export function Outcomes() {
 
   return (
     <section className="bg-bone">
-      <div className="mx-auto max-w-[1200px] px-[var(--s-6)] py-[var(--s-24)] md:py-[var(--s-32)]">
+      <div className="mx-auto max-w-[1200px] px-[var(--s-6)] section-pad">
         <SectionHeading
-          index="06"
+          index="05"
           eyebrow="Projects"
           title="Recent work, real clients"
           lead="Evaluations, supply-chain studies, and survey research delivered for international NGOs, research institutions, and universities."
@@ -26,7 +26,7 @@ export function Outcomes() {
         {/* A project register rather than a card grid: same reasoning as the
             services index. Status is a mono label with a rule under the
             ongoing ones — no pills, no tinted chips. */}
-        <ul className="mt-[var(--s-16)] border-b border-rule">
+        <ul className="mt-[var(--heading-gap)] border-b border-rule">
           {PROJECTS.map((p, i) => (
             <Reveal as="li" key={p.slug} step={i % 2}>
               <article className="grid grid-cols-1 gap-x-[var(--s-8)] gap-y-[var(--s-4)] border-t border-rule py-[var(--s-8)] md:grid-cols-12">

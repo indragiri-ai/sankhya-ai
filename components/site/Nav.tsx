@@ -142,8 +142,14 @@ export function Nav() {
               className={cn(
                 "inline-flex items-center rounded-[var(--r-sm)] border px-[var(--s-6)] py-[var(--s-3)]",
                 "text-[0.8125rem] font-[550] leading-[1.5] tracking-[-0.005em]",
-                "border-violet bg-violet text-bone transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out)]",
-                "hover:border-ink hover:bg-ink"
+                "transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out)]",
+                // Outline at the top of the page, filling in once the reader
+                // scrolls. A solid violet button was the most saturated thing
+                // above the fold and pulled the eye before the headline did;
+                // it earns its fill after the headline has been read.
+                scrolled
+                  ? "border-violet bg-violet text-bone hover:border-ink hover:bg-ink"
+                  : "border-rule-strong text-ink hover:border-violet hover:text-violet"
               )}
             >
               Start a conversation

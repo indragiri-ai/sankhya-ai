@@ -108,14 +108,14 @@ function ServiceRow({ service, step }: { service: Service; step: number }) {
 export function ServicesGrid() {
   return (
     <section className="bg-bone">
-      <div className="mx-auto max-w-[1200px] px-[var(--s-6)] py-[var(--s-24)] md:py-[var(--s-32)]">
+      <div className="mx-auto max-w-[1200px] px-[var(--s-6)] section-pad">
         <SectionHeading
-          index="04"
+          index="03"
           eyebrow="Core services"
           title="What we build"
           lead="Five ways in — from a first honest assessment to systems running in production."
         />
-        <ul className="mt-[var(--s-16)] border-b border-rule">
+        <ul className="mt-[var(--heading-gap)] border-b border-rule">
           {SERVICES.map((s, i) => (
             <ServiceRow key={s.slug} service={s} step={i} />
           ))}

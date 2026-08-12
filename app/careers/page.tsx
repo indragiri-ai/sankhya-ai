@@ -17,7 +17,7 @@ export const metadata: Metadata = {
  */
 export default function CareersPage() {
   return (
-    <div className="mx-auto max-w-[1200px] pb-[var(--s-24)] md:pb-[var(--s-32)]">
+    <div className="mx-auto max-w-[1200px] pb-[var(--section-y)] md:pb-[var(--section-y-lg)]">
       <PageHeader eyebrow="Careers" title="Work with us." />
 
       <div className="flex max-w-[68ch] flex-col gap-[var(--s-6)] px-[var(--s-6)]">

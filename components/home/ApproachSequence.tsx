@@ -87,16 +87,16 @@ export function ApproachSequence() {
 
   return (
     <section ref={sectionRef} className="bg-paper-2">
-      <div className="mx-auto max-w-[1200px] px-[var(--s-6)] py-[var(--s-24)] md:py-[var(--s-32)]">
+      <div className="mx-auto max-w-[1200px] px-[var(--s-6)] section-pad">
         <SectionHeading
-          index="05"
+          index="04"
           eyebrow="How we work"
           title="One method, run in the open" /* [PLACEHOLDER — verify] */
           lead="Five steps, each ending in something you can hold. Engagements can enter at any step."
         />
 
         {/* Desktop: horizontal sequence */}
-        <div className="mt-[var(--s-16)] hidden lg:block">
+        <div className="mt-[var(--heading-gap)] hidden lg:block">
           <div className="relative mb-[var(--s-8)]">
             <div className="h-px w-full bg-rule-strong" />
             <div

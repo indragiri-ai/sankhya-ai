@@ -51,7 +51,7 @@ export function SectionHeading({
       <Reveal step={1}>
         <h2
           className={cn(
-            "text-h2 mt-[var(--s-6)] max-w-[20ch]",
+            "text-h2 mt-[var(--s-4)] max-w-[22ch]",
             onDark ? "text-bone" : "text-violet"
           )}
         >
@@ -63,7 +63,7 @@ export function SectionHeading({
         <Reveal step={2}>
           <p
             className={cn(
-              "text-body-lg measure-lead mt-[var(--s-4)]",
+              "text-body-lg measure-lead mt-[var(--s-3)]",
               onDark ? "text-bone/80" : "text-grey-600"
             )}
           >

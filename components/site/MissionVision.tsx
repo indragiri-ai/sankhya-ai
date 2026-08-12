@@ -17,7 +17,7 @@ import { SectionHeading } from "@/components/site/SectionHeading";
 export function MissionVision() {
   return (
     <section className="bg-paper-2">
-      <div className="mx-auto max-w-[1200px] px-[var(--s-6)] py-[var(--s-24)] md:py-[var(--s-32)]">
+      <div className="mx-auto max-w-[1200px] px-[var(--s-6)] section-pad">
         <SectionHeading
           index="02"
           eyebrow="Who we are"
@@ -25,7 +25,7 @@ export function MissionVision() {
           lead="Sankhya AI pairs field research with data engineering and applied AI — one team from questionnaire design to the system that runs on the answers."
         />
 
-        <div className="mt-[var(--s-16)] grid gap-[var(--s-12)] md:grid-cols-2 md:gap-[var(--s-16)]">
+        <div className="mt-[var(--heading-gap)] grid gap-[var(--s-8)] md:grid-cols-2 md:gap-[var(--s-12)]">
           <Reveal step={0}>
             <article className="border-t border-rule-strong pt-[var(--s-6)]">
               <p className="text-eyebrow text-ember-text">Mission</p>

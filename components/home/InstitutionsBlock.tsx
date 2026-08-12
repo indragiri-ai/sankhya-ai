@@ -20,13 +20,13 @@ const MARKS: string[] = [];
 export function InstitutionsBlock() {
   return (
     <section className="bg-bone">
-      <div className="mx-auto max-w-[1200px] px-[var(--s-6)] py-[var(--s-24)] md:py-[var(--s-32)]">
+      <div className="mx-auto max-w-[1200px] px-[var(--s-6)] section-pad">
         <SectionHeading
-          index="07"
+          index="06"
           eyebrow="For institutions"
           title="Built for organizations that answer to someone" /* [PLACEHOLDER — verify] */
         />
-        <div className="mt-[var(--s-16)] grid gap-[var(--s-12)] md:grid-cols-2 md:gap-[var(--s-16)]">
+        <div className="mt-[var(--heading-gap)] grid gap-[var(--s-12)] md:grid-cols-2 md:gap-[var(--s-16)]">
           <Reveal step={0}>
             <p className="text-body measure border-t border-rule pt-[var(--s-6)] text-grey-600">
               We work the way institutional buyers need vendors to work:

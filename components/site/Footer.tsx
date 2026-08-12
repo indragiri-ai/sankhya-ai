@@ -26,7 +26,7 @@ export function Footer() {
         {/* Devanagari typographic object — now set in Tiro Devanagari Hindi
             (single 400 weight, so no font-weight override) rather than
             whatever Devanagari face the visitor's OS happened to carry. */}
-        <p className="devanagari select-none text-right text-[clamp(4rem,12vw,9rem)] leading-none text-grey-600">
+        <p className="devanagari select-none text-right text-[clamp(3rem,7vw,5rem)] leading-none text-grey-600">
           <span lang="sa" aria-hidden="true">
             संख्या
           </span>
