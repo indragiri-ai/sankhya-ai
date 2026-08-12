@@ -23,8 +23,10 @@ export function Footer() {
   return (
     <footer data-surface="dark" className="bg-ink text-bone no-print">
       <div className="mx-auto max-w-[1200px] px-[var(--s-6)] py-[var(--s-16)]">
-        {/* Devanagari typographic object */}
-        <p className="devanagari select-none text-right text-[clamp(4rem,12vw,9rem)] font-[550] leading-none text-grey-600">
+        {/* Devanagari typographic object — now set in Tiro Devanagari Hindi
+            (single 400 weight, so no font-weight override) rather than
+            whatever Devanagari face the visitor's OS happened to carry. */}
+        <p className="devanagari select-none text-right text-[clamp(4rem,12vw,9rem)] leading-none text-grey-600">
           <span lang="sa" aria-hidden="true">
             संख्या
           </span>
@@ -33,7 +35,7 @@ export function Footer() {
 
         <div className="mt-[var(--s-12)] grid grid-cols-1 gap-[var(--s-12)] sm:grid-cols-2 lg:grid-cols-4">
           <nav aria-label="Company">
-            <h2 className="text-eyebrow text-grey-400">Company</h2>
+            <h2 className="text-eyebrow border-t border-bone/15 pt-[var(--s-4)] text-grey-400">Company</h2>
             <ul className="mt-[var(--s-4)] flex flex-col gap-[var(--s-3)]">
               {COMPANY_LINKS.map((l) => (
                 <li key={l.href}>
@@ -46,7 +48,7 @@ export function Footer() {
           </nav>
 
           <nav aria-label="Services">
-            <h2 className="text-eyebrow text-grey-400">Services</h2>
+            <h2 className="text-eyebrow border-t border-bone/15 pt-[var(--s-4)] text-grey-400">Services</h2>
             <ul className="mt-[var(--s-4)] flex flex-col gap-[var(--s-3)]">
               {SERVICES.map((s) => (
                 <li key={s.slug}>
@@ -62,7 +64,7 @@ export function Footer() {
           </nav>
 
           <div>
-            <h2 className="text-eyebrow text-grey-400">Contact</h2>
+            <h2 className="text-eyebrow border-t border-bone/15 pt-[var(--s-4)] text-grey-400">Contact</h2>
             <ul className="mt-[var(--s-4)] flex flex-col gap-[var(--s-3)] font-mono text-small">
               <li>
                 <a href={`mailto:${CONTACT.email}`} className="link-sweep text-bone/90">
@@ -90,7 +92,7 @@ export function Footer() {
           </div>
 
           <nav aria-label="Legal">
-            <h2 className="text-eyebrow text-grey-400">Legal</h2>
+            <h2 className="text-eyebrow border-t border-bone/15 pt-[var(--s-4)] text-grey-400">Legal</h2>
             <ul className="mt-[var(--s-4)] flex flex-col gap-[var(--s-3)]">
               <li>
                 <Link href="/legal/privacy" className="link-sweep text-small text-bone/90">

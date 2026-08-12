@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/components/motion/Reveal";
+import { PageHeader } from "@/components/site/PageHeader";
 import { CONTACT } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -16,17 +17,10 @@ export const metadata: Metadata = {
  */
 export default function CareersPage() {
   return (
-    <div className="mx-auto max-w-[1200px] px-[var(--s-6)] pb-[var(--s-24)] pt-[calc(var(--nav-h)+var(--s-16))] md:pb-[var(--s-32)]">
-      <Reveal step={0}>
-        <p className="text-eyebrow text-grey-600">Careers</p>
-      </Reveal>
-      <Reveal step={1}>
-        <h1 className="text-h1 mt-[var(--s-4)] max-w-[20ch] text-ink">
-          Work with us.
-        </h1>
-      </Reveal>
+    <div className="mx-auto max-w-[1200px] pb-[var(--s-24)] md:pb-[var(--s-32)]">
+      <PageHeader eyebrow="Careers" title="Work with us." />
 
-      <div className="mt-[var(--s-12)] flex max-w-[68ch] flex-col gap-[var(--s-6)]">
+      <div className="flex max-w-[68ch] flex-col gap-[var(--s-6)] px-[var(--s-6)]">
         <Reveal step={2}>
           <p className="text-body-lg text-ink">
             We don&rsquo;t have specific positions listed right now — but we

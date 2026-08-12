@@ -19,7 +19,7 @@ export default function PrivacyPage() {
       <p className="inline-block rounded-[var(--r-sm)] border border-ember-text/40 px-[var(--s-3)] py-[var(--s-2)] font-mono text-small text-ember-text">
         DRAFT — REQUIRES LEGAL REVIEW
       </p>
-      <h1 className="text-h1 mt-[var(--s-6)] text-ink">Privacy</h1>
+      <h1 className="text-h1 mt-[var(--s-6)] text-violet">Privacy</h1>
       <div className="mt-[var(--s-8)] flex max-w-[68ch] flex-col gap-[var(--s-6)] text-body text-grey-600">
         <p>
           This page describes what this website actually does with data. It

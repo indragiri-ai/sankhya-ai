@@ -14,40 +14,46 @@ export function Outcomes() {
   if (!SHOW_OUTCOMES || PROJECTS.length === 0) return null;
 
   return (
-    <section className="border-t border-grey-200">
+    <section className="bg-bone">
       <div className="mx-auto max-w-[1200px] px-[var(--s-6)] py-[var(--s-24)] md:py-[var(--s-32)]">
         <SectionHeading
+          index="06"
           eyebrow="Projects"
           title="Recent work, real clients"
           lead="Evaluations, supply-chain studies, and survey research delivered for international NGOs, research institutions, and universities."
         />
 
-        <ul className="mt-[var(--s-12)] grid gap-[var(--s-6)] md:grid-cols-2">
+        {/* A project register rather than a card grid: same reasoning as the
+            services index. Status is a mono label with a rule under the
+            ongoing ones — no pills, no tinted chips. */}
+        <ul className="mt-[var(--s-16)] border-b border-rule">
           {PROJECTS.map((p, i) => (
-            <Reveal as="li" key={p.slug} step={i % 2} className="h-full">
-              <article className="flex h-full flex-col rounded-[var(--r-lg)] border border-grey-200 bg-surface p-[var(--s-8)] transition-[border-color,transform,box-shadow] duration-[var(--dur-fast)] ease-[var(--ease-out)] hover:-translate-y-[2px] hover:border-violet hover:shadow-[var(--shadow-card)] motion-reduce:transition-none motion-reduce:hover:translate-y-0">
-                <div className="flex items-center justify-between gap-[var(--s-4)]">
-                  <span className="font-mono text-small text-grey-400">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span
-                    className={`rounded-full px-[var(--s-3)] py-[var(--s-1)] font-mono text-[0.75rem] ${
-                      p.status === "Ongoing"
-                        ? "bg-ember/10 text-ember-text"
-                        : "bg-grey-200/60 text-grey-600"
-                    }`}
-                  >
-                    {p.status === "Ongoing"
-                      ? `${p.period.replace(" —", "")} — ongoing`
-                      : "Completed"}
-                  </span>
+            <Reveal as="li" key={p.slug} step={i % 2}>
+              <article className="grid grid-cols-1 gap-x-[var(--s-8)] gap-y-[var(--s-4)] border-t border-rule py-[var(--s-8)] md:grid-cols-12">
+                <div className="md:col-span-5">
+                  <div className="flex items-baseline gap-[var(--s-4)]">
+                    <span className="text-index text-grey-600">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="text-h3 text-ink">{p.title}</h3>
+                  </div>
+                  <p className="mt-[var(--s-2)] pl-[calc(var(--s-4)+1.6em)] text-small text-grey-600">
+                    {p.client}
+                  </p>
                 </div>
-                <h3 className="text-h3 mt-[var(--s-3)] text-ink">{p.title}</h3>
-                <p className="mt-[var(--s-1)] text-small font-[500] text-grey-600">
-                  {p.client}
-                </p>
-                <p className="mt-[var(--s-3)] text-body text-grey-600">
-                  {p.description}
+
+                <p className="text-body text-grey-600 md:col-span-5">{p.description}</p>
+
+                <p
+                  className={`font-mono text-small md:col-span-2 md:text-right ${
+                    p.status === "Ongoing"
+                      ? "text-ember-text"
+                      : "text-grey-600"
+                  }`}
+                >
+                  {p.status === "Ongoing"
+                    ? `${p.period.replace(" —", "")} — ongoing`
+                    : "Completed"}
                 </p>
               </article>
             </Reveal>

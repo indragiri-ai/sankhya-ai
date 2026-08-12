@@ -86,12 +86,10 @@ export function ApproachSequence() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="border-t border-grey-200 bg-bone"
-    >
+    <section ref={sectionRef} className="bg-paper-2">
       <div className="mx-auto max-w-[1200px] px-[var(--s-6)] py-[var(--s-24)] md:py-[var(--s-32)]">
         <SectionHeading
+          index="05"
           eyebrow="How we work"
           title="One method, run in the open" /* [PLACEHOLDER — verify] */
           lead="Five steps, each ending in something you can hold. Engagements can enter at any step."
@@ -100,12 +98,14 @@ export function ApproachSequence() {
         {/* Desktop: horizontal sequence */}
         <div className="mt-[var(--s-16)] hidden lg:block">
           <div className="relative mb-[var(--s-8)]">
-            <div className="h-px w-full bg-grey-200" />
+            <div className="h-px w-full bg-rule-strong" />
             <div
               ref={lineDesktopRef}
               className="absolute left-0 top-[-0.5px] h-[2px] w-full origin-left bg-ember"
               style={{ transform: "scaleX(0)" }}
             />
+            {/* Square nodes, not dots — the editorial direction has no circles
+                in it, and a 7px square reads as a printed tick mark. */}
             <div className="absolute inset-x-0 top-0 flex justify-between">
               {APPROACH_STEPS.map((step, i) => (
                 <span
@@ -113,7 +113,7 @@ export function ApproachSequence() {
                   ref={(el) => {
                     nodesRef.current[i] = el;
                   }}
-                  className="mt-[-4.5px] block h-[10px] w-[10px] rounded-full bg-violet transition-opacity duration-[var(--dur-fast)]"
+                  className="mt-[-3px] block h-[7px] w-[7px] bg-violet transition-opacity duration-[var(--dur-fast)]"
                   style={{ opacity: 0.35 }}
                 />
               ))}
@@ -121,12 +121,11 @@ export function ApproachSequence() {
           </div>
           <ol className="grid grid-cols-5 gap-[var(--s-6)]">
             {APPROACH_STEPS.map((step) => (
-              <li key={step.slug} className="flex flex-col gap-[var(--s-3)]">
-                <span className="text-figure text-small text-grey-400">{step.index}</span>
-                <h3 className="text-h3 text-ink">{step.title}</h3>
-                <p className="text-body text-grey-600">{step.verbLine}</p>
-                <p className="font-mono text-small text-grey-400">
-                  <span aria-hidden="true">→ </span>
+              <li key={step.slug} className="flex flex-col">
+                <span className="text-index text-ember-text">{step.index}</span>
+                <h3 className="text-h3 mt-[var(--s-4)] text-ink">{step.title}</h3>
+                <p className="text-body mt-[var(--s-3)] text-grey-600">{step.verbLine}</p>
+                <p className="mt-[var(--s-4)] border-t border-rule pt-[var(--s-3)] font-mono text-small text-grey-600">
                   {step.deliverable}
                 </p>
               </li>
@@ -136,7 +135,7 @@ export function ApproachSequence() {
 
         {/* Mobile/tablet: vertical rule */}
         <div className="relative mt-[var(--s-12)] lg:hidden">
-          <div className="absolute bottom-0 left-[4px] top-0 w-px bg-grey-200" />
+          <div className="absolute bottom-0 left-[4px] top-0 w-px bg-rule-strong" />
           <div
             ref={lineMobileRef}
             className="absolute bottom-0 left-[3.5px] top-0 w-[2px] origin-top bg-ember"
@@ -149,15 +148,14 @@ export function ApproachSequence() {
                   ref={(el) => {
                     mobileNodesRef.current[i] = el;
                   }}
-                  className="absolute left-0 top-[6px] block h-[9px] w-[9px] rounded-full bg-violet transition-opacity duration-[var(--dur-fast)]"
+                  className="absolute left-[1px] top-[6px] block h-[7px] w-[7px] bg-violet transition-opacity duration-[var(--dur-fast)]"
                   style={{ opacity: 0.35 }}
                 />
                 <Reveal step={0}>
-                  <span className="text-figure text-small text-grey-400">{step.index}</span>
-                  <h3 className="mt-[var(--s-2)] text-h3 text-ink">{step.title}</h3>
+                  <span className="text-index text-ember-text">{step.index}</span>
+                  <h3 className="mt-[var(--s-3)] text-h3 text-ink">{step.title}</h3>
                   <p className="mt-[var(--s-2)] text-body text-grey-600">{step.verbLine}</p>
-                  <p className="mt-[var(--s-3)] font-mono text-small text-grey-400">
-                    <span aria-hidden="true">→ </span>
+                  <p className="mt-[var(--s-4)] border-t border-rule pt-[var(--s-3)] font-mono text-small text-grey-600">
                     {step.deliverable}
                   </p>
                 </Reveal>

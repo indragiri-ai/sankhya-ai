@@ -1,77 +1,101 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
-import { BinduField } from "@/components/home/BinduField";
 import { Reveal } from "@/components/motion/Reveal";
-import { PrimaryButton, OutlineButton } from "@/components/site/Buttons";
+import { PrimaryButton, SecondaryLink } from "@/components/site/Buttons";
+import { CONTACT } from "@/lib/constants";
 
 /**
- * Hero (redesigned 2026-07-10, ref: Fusemachines hero language mapped onto
- * Sankhya tokens).
- * - Full-bleed dark surface: violet → ink radial gradient, BinduField in
- *   bone/ember on top, content above both.
- * - Stack: ember eyebrow (the brand tagline) → display headline with one
- *   ember word → one-sentence sub → pill CTA row. (The fact strip moved to
- *   its own StatsBand section on 2026-07-10, per client.)
- * - Height: clamp(640px, 100svh, 900px); svh avoids the mobile URL-bar jump.
+ * Hero (Editorial Institute, 2026-08-12).
+ *
+ * Three things were deliberately removed from the previous version:
+ *   - the violet→ink radial gradient,
+ *   - the BinduField particle canvas,
+ *   - the full-ember second line of the headline.
+ * Together they read as a generic SaaS landing page and worked against the
+ * client list sitting directly beneath them. What replaces them is nothing:
+ * a light paper field, a rule, and the headline set in the display serif at
+ * a size the old bold grotesque could never have carried without shouting.
+ *
+ * The hero is no longer a dark full-bleed surface, so the nav rides light on
+ * every route from first paint — Nav.tsx's dark-hero mode was removed with
+ * this change rather than left switched off.
+ *
+ * Height is content-driven rather than 100svh: an editorial page should show
+ * the reader that it continues below, and a forced viewport-height hero on a
+ * laptop pushed the credibility strip off-screen.
  */
 export function Hero() {
-  const hostRef = useRef<HTMLElement>(null);
-  const [canvasVisible, setCanvasVisible] = useState(false);
-
-  useEffect(() => {
-    const t = setTimeout(() => setCanvasVisible(true), 400);
-    return () => clearTimeout(t);
-  }, []);
-
   return (
-    <section
-      ref={hostRef}
-      data-surface="dark"
-      className="relative flex h-[clamp(640px,100svh,900px)] items-center overflow-hidden bg-violet"
-    >
-      {/* Depth: one quiet radial glow toward the top-left, ink toward the foot */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(120% 90% at 20% 0%, rgb(74 20 140 / 0.55) 0%, transparent 55%), linear-gradient(180deg, transparent 55%, rgb(22 0 41 / 0.65) 100%)",
-        }}
-      />
+    <section className="relative bg-bone">
+      <div className="mx-auto max-w-[1200px] px-[var(--s-6)] pb-[var(--s-24)] pt-[calc(var(--nav-h)+var(--s-16))] md:pb-[var(--s-32)] md:pt-[calc(var(--nav-h)+var(--s-24))]">
+        {/* Index line: the document's opening mark */}
+        <Reveal step={0}>
+          <div className="flex items-center gap-[var(--s-3)] border-t border-rule-strong pt-[var(--s-4)]">
+            <span className="text-index text-ember-text">01</span>
+            <span className="text-eyebrow text-grey-600">Your Intelligence Partner</span>
+          </div>
+        </Reveal>
 
-      <div
-        className="absolute inset-0 transition-opacity duration-[800ms] ease-[var(--ease-out)] motion-reduce:transition-none"
-        style={{ opacity: canvasVisible ? 0.55 : 0 }}
-      >
-        <BinduField hostRef={hostRef} onDark />
-      </div>
+        <div className="mt-[var(--s-12)] grid grid-cols-1 gap-[var(--s-12)] lg:grid-cols-12 lg:gap-[var(--s-8)]">
+          <div className="lg:col-span-8">
+            <Reveal step={1}>
+              {/* One emphasis, and it is the serif italic rather than a block
+                  of ember. The accent colour is reserved for the tick. */}
+              <h1 className="text-display text-violet">
+                Decisions, made <em>measurable</em>.
+              </h1>
+            </Reveal>
 
-      <div className="relative mx-auto w-full max-w-[1200px] px-[var(--s-6)] pt-[var(--nav-h)]">
-        <div className="flex max-w-[46rem] flex-col items-center gap-[var(--s-6)] text-center md:items-start md:text-left">
-          <Reveal step={0}>
-            <p className="text-eyebrow text-ember">Your Intelligence Partner</p>
-          </Reveal>
-          <Reveal step={1}>
-            <h1 className="text-display text-bone">
-              Decisions, made{" "}
-              <span className="text-ember">measurable.</span>
-            </h1>
-          </Reveal>
-          <Reveal step={2}>
-            <p className="text-body-lg measure text-bone/85">
-              Sankhya AI is a research and data company in Kathmandu. We run
-              field research, build analytics, and apply AI so organizations
-              in Nepal — and the institutions that work here — can decide
-              from evidence.
-            </p>
-          </Reveal>
-          <Reveal step={3}>
-            <div className="mt-[var(--s-2)] flex flex-wrap items-center justify-center gap-[var(--s-4)] md:justify-start">
-              <PrimaryButton href="/contact">Start a conversation</PrimaryButton>
-              <OutlineButton href="/services">Explore our services</OutlineButton>
-            </div>
-          </Reveal>
+            <Reveal step={2}>
+              <p className="text-body-lg measure-lead mt-[var(--s-8)] text-grey-600">
+                Sankhya AI is a research and data company in Kathmandu. We run
+                field research, build analytics, and apply AI so organizations
+                in Nepal — and the institutions that work here — can decide
+                from evidence.
+              </p>
+            </Reveal>
+
+            <Reveal step={3}>
+              <div className="mt-[var(--s-12)] flex flex-wrap items-center gap-x-[var(--s-8)] gap-y-[var(--s-4)]">
+                <PrimaryButton href="/contact">Start a conversation</PrimaryButton>
+                <SecondaryLink href="/services">Explore our services</SecondaryLink>
+              </div>
+            </Reveal>
+          </div>
+
+          {/* The right rail carries the one piece of hard information a first
+              time visitor needs: what this company actually is, and how to
+              reach a human. Set small, in mono, like a masthead. */}
+          <div className="lg:col-span-4 lg:pl-[var(--s-8)]">
+            <Reveal step={4}>
+              <div className="border-t border-rule pt-[var(--s-4)] lg:border-l lg:border-t-0 lg:pl-[var(--s-8)] lg:pt-0">
+                <span aria-hidden="true" className="tick mb-[var(--s-6)]" />
+                <dl className="flex flex-col gap-[var(--s-6)]">
+                  <div>
+                    <dt className="text-eyebrow text-grey-600">Based in</dt>
+                    <dd className="mt-[var(--s-2)] font-mono text-small text-ink">
+                      {CONTACT.city}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-eyebrow text-grey-600">Practice</dt>
+                    <dd className="mt-[var(--s-2)] text-small text-ink">
+                      Field research · Data engineering · Applied AI
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-eyebrow text-grey-600">Enquiries</dt>
+                    <dd className="mt-[var(--s-2)]">
+                      <a
+                        href={`mailto:${CONTACT.email}`}
+                        className="link-sweep font-mono text-small text-ember-text"
+                      >
+                        {CONTACT.email}
+                      </a>
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </div>
     </section>

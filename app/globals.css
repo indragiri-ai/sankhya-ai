@@ -7,16 +7,25 @@
    ============================================================ */
 
 :root {
-  /* Color — sampled from logo */
-  --violet:      #34006F;  /* brand primary (सं). Flat use only — never gradients, never glows */
+  /* ---- Color — sampled from logo ----------------------------------------
+     EDITORIAL INSTITUTE (redesign 2026-08-12). Violet is the ink, not a
+     decoration: it sets headlines and dark bands. Ember is a scalpel —
+     rules, markers, numerals, one word per page at most. It never fills a
+     headline and never appears as a gradient or glow. */
+  --violet:      #34006F;  /* brand primary (सं). Flat use only */
+  --violet-deep: #250050;  /* large dark surfaces — richer than flat violet */
+  --violet-wash: #F2EDF7;  /* tinted panels on paper */
   --ink:         #160029;  /* body text, darkest surfaces */
   --bone:        #FAF7F1;  /* page canvas */
+  --paper-2:     #F4F0E8;  /* alternating band — one step down from bone */
   --surface:     #FFFFFF;  /* cards, panels */
-  --ember:       #FE5000;  /* accent (AI). Graphics, markers, display numerals ≥24px ONLY */
+  --ember:       #FE5000;  /* accent (AI). Rules, markers, numerals ≥24px ONLY */
   --ember-text:  #C43D00;  /* links & small accent text on light (AA-safe) */
   --grey-600:    #5B5566;
   --grey-400:    #948DA1;
-  --grey-200:    #E4E0EA;  /* hairlines */
+  --grey-200:    #E4E0EA;  /* cool hairline — retained for shadcn primitives */
+  --rule:        #DCD5C8;  /* warm editorial hairline — the default rule on paper */
+  --rule-strong: #C4BBA9;  /* section-opening rules */
   --viz-moss:    #3D7068;  /* second data-viz series only */
 
   /* Spacing scale (rem) */
@@ -24,8 +33,9 @@
   --s-6: 1.5rem;  --s-8: 2rem;   --s-12: 3rem;   --s-16: 4rem;
   --s-24: 6rem;   --s-32: 8rem;  /* section vertical rhythm: --s-24 mobile, --s-32 desktop */
 
-  /* Radii */
-  --r-sm: 6px; --r-md: 10px; --r-lg: 16px; /* buttons r-sm, cards r-md, media r-lg */
+  /* Radii — editorial direction is near-square. Softness reads friendly;
+     this brand needs precise. Pills are gone site-wide. */
+  --r-sm: 2px; --r-md: 3px; --r-lg: 4px;
 
   /* Shadows — used sparingly; borders preferred */
   --shadow-card: 0 1px 2px rgb(22 0 41 / 0.06), 0 8px 24px rgb(22 0 41 / 0.06);
@@ -59,27 +69,35 @@
   --accent: var(--grey-200);
   --accent-foreground: var(--ink);
   --destructive: var(--ember-text);
-  --border: var(--grey-200);
-  --input: var(--grey-200);
+  --border: var(--rule);
+  --input: var(--rule);
   --ring: var(--violet);
 }
 
 @theme inline {
-  /* Brand colors exposed to Tailwind (bg-violet, text-ink, border-grey-200 …) */
+  /* Brand colors exposed to Tailwind (bg-violet, text-ink, border-rule …) */
   --color-violet: var(--violet);
+  --color-violet-deep: var(--violet-deep);
+  --color-violet-wash: var(--violet-wash);
   --color-ink: var(--ink);
   --color-bone: var(--bone);
+  --color-paper-2: var(--paper-2);
   --color-surface: var(--surface);
   --color-ember: var(--ember);
   --color-ember-text: var(--ember-text);
   --color-grey-600: var(--grey-600);
   --color-grey-400: var(--grey-400);
   --color-grey-200: var(--grey-200);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
   --color-viz-moss: var(--viz-moss);
 
-  /* Fonts */
+  /* Fonts — serif carries the voice, grotesque carries the interface,
+     mono carries every numeral. */
+  --font-serif: var(--font-newsreader), ui-serif, Georgia, serif;
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-deva: var(--font-tiro-deva), "Noto Serif Devanagari", "Mangal", serif;
 
   /* Radii */
   --radius-sm: var(--r-sm);
@@ -112,60 +130,91 @@
    Desktop values apply ≥768px. All numerals site-wide: mono, tabular.
    ============================================================ */
 
-/* Headline weights raised 2026-07-10 (redesign): the reference site sets
-   heads at 900; Geist reads best two steps lighter — 700/650/600. */
+/* EDITORIAL INSTITUTE (2026-08-12). Display/h1/h2 are Newsreader — an
+   editorial serif with an optical-size axis, set at 400–500 rather than
+   bold. Weight is not how this brand signals authority; scale, restraint,
+   and generous leading are. h3 drops to the grotesque so the serif keeps
+   its rank and the hierarchy stays legible at a glance. */
 @utility text-display {
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  font-size: 2.75rem;
-  line-height: 1.08;
-  font-weight: 700;
-  letter-spacing: -0.035em;
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 7.5vw, 3.25rem);
+  line-height: 1.06;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 60;
   @media (min-width: 768px) {
-    font-size: 4.75rem;
-    line-height: 1.04;
+    font-size: clamp(3.5rem, 5.6vw, 5.25rem);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    font-variation-settings: "opsz" 72;
   }
 }
 
 @utility text-h1 {
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  font-size: 2rem;
-  line-height: 1.15;
-  font-weight: 650;
-  letter-spacing: -0.03em;
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 6vw, 2.5rem);
+  line-height: 1.12;
+  font-weight: 400;
+  letter-spacing: -0.018em;
+  font-variation-settings: "opsz" 48;
   @media (min-width: 768px) {
-    font-size: 3rem;
-    line-height: 1.1;
+    font-size: 3.375rem;
+    line-height: 1.06;
+    letter-spacing: -0.022em;
   }
 }
 
 @utility text-h2 {
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-serif);
   font-size: 1.75rem;
-  line-height: 1.2;
-  font-weight: 650;
-  letter-spacing: -0.025em;
+  line-height: 1.18;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  font-variation-settings: "opsz" 36;
   @media (min-width: 768px) {
-    font-size: 2.375rem;
-    line-height: 1.12;
+    font-size: 2.5rem;
+    line-height: 1.1;
   }
 }
 
+/* Sub-heads return to the grotesque: medium weight, tight tracking. */
 @utility text-h3 {
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  font-size: 1.25rem;
-  line-height: 1.3;
-  font-weight: 600;
-  letter-spacing: -0.015em;
+  font-size: 1.125rem;
+  line-height: 1.35;
+  font-weight: 550;
+  letter-spacing: -0.011em;
   @media (min-width: 768px) {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 }
 
+/* Pull-quotes, name-band, the one-per-page emphatic line. Serif italic. */
+@utility text-quote {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  line-height: 1.35;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  @media (min-width: 768px) {
+    font-size: 2rem;
+    line-height: 1.3;
+  }
+}
+
+/* Lead paragraphs sit under every heading. Slightly larger and looser than
+   body: the serif above needs room to breathe or the page reads cramped. */
 @utility text-body-lg {
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  font-size: 1.125rem;
-  line-height: 1.65;
+  font-size: 1.0625rem;
+  line-height: 1.7;
   font-weight: 400;
+  letter-spacing: -0.004em;
+  @media (min-width: 768px) {
+    font-size: 1.1875rem;
+    line-height: 1.72;
+  }
 }
 
 @utility text-body {
@@ -182,12 +231,14 @@
   font-weight: 400;
 }
 
+/* The only uppercase on the site. Mono, wide-tracked, small — it reads as a
+   printed index label, which is exactly the register we want. */
 @utility text-eyebrow {
   font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   line-height: 1;
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
@@ -204,12 +255,52 @@
   max-width: 68ch;
 }
 
-/* Devanagari display — Geist has no Devanagari; documented system fallback
-   stack (Build Book §5). Mukta is added only if Nepali is approved. */
+/* Tighter measure for lead paragraphs set at text-body-lg — the larger size
+   overruns 68ch and the line count drops below comfortable. */
+@utility measure-lead {
+  max-width: 56ch;
+}
+
+/* ---- Editorial furniture ------------------------------------------------
+   The recurring marks of the direction: a numbered index label, a hairline
+   above each section, and an ember tick that replaces the old filled
+   accents. These carry the "institute" register more than any one color. */
+
+/* "01" — the section number that precedes every eyebrow. */
+@utility text-index {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The 24px ember tick. The accent's main job on the whole site. */
+@utility tick {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--ember);
+  flex: none;
+}
+
+/* Section-opening hairline, full container width. */
+@utility rule-top {
+  border-top: 1px solid var(--rule);
+}
+
+@utility rule-top-strong {
+  border-top: 1px solid var(--rule-strong);
+}
+
+/* Devanagari — Tiro Devanagari Hindi, a proper text serif, now loaded rather
+   than left to whatever the OS happens to have. संख्या is the brand's best
+   asset; it deserves real type, and Tiro's calligraphic contrast is the
+   Devanagari counterpart to Newsreader's. */
 @utility devanagari {
-  font-family:
-    "Mukta", "Noto Sans Devanagari", "Kohinoor Devanagari",
-    "Mangal", "Nirmala UI", sans-serif;
+  font-family: var(--font-deva);
+  font-weight: 400;
 }
 
 /* Underline sweep — the site-wide text-link hover (Build Book §4, Phase 2).

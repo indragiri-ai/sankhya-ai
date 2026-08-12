@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { NAV_LINKS, CONTACT } from "@/lib/constants";
 import { Logo } from "@/components/site/Logo";
-import { Magnetic } from "@/components/motion/Magnetic";
 import { cn } from "@/lib/utils";
 
 /**
@@ -92,9 +91,10 @@ export function Nav() {
     [pathname]
   );
 
-  // Home opens on the dark hero: until the page scrolls, the nav rides it
-  // with bone text and the bone-सं logo variant.
-  const onDarkHero = pathname === "/" && !scrolled;
+  // NOTE: the home hero was a dark full-bleed surface until 2026-08-12 and
+  // the nav used to ride it in bone until the first scroll. The redesign made
+  // the hero a light paper field, so that mode is gone entirely — the nav is
+  // ink-on-bone on every route from first paint.
 
   return (
     <header className="no-print">
@@ -103,17 +103,16 @@ export function Nav() {
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-[background-color,height,box-shadow] duration-[var(--dur-fast)] ease-[var(--ease-out)]",
           scrolled
-            ? "h-[var(--nav-h-scrolled)] bg-bone shadow-[0_1px_0_0_var(--grey-200)]"
+            ? "h-[var(--nav-h-scrolled)] bg-bone/95 shadow-[0_1px_0_0_var(--rule)] backdrop-blur-[6px]"
             : "h-[var(--nav-h)] bg-transparent"
         )}
       >
         <div className="mx-auto flex h-full max-w-[1200px] items-center justify-between px-[var(--s-6)]">
-          <Logo
-            className={onDarkHero ? "text-bone" : "text-ink"}
-            onDark={onDarkHero}
-          />
+          <Logo className="text-ink" />
 
-          {/* Desktop links */}
+          {/* Desktop links. The active page is marked with a 2px ember tick
+              above the label rather than an underline — it reads as an index
+              marker and leaves the baseline clean. */}
           <div className="hidden items-center gap-[var(--s-8)] md:flex">
             <ul className="flex items-center gap-[var(--s-6)]">
               {NAV_LINKS.map((link) => (
@@ -122,25 +121,33 @@ export function Nav() {
                     href={link.href}
                     aria-current={isActive(link.href) ? "page" : undefined}
                     className={cn(
-                      "link-sweep text-[0.9375rem] font-[500]",
-                      onDarkHero ? "text-bone" : "text-ink",
-                      isActive(link.href) &&
-                        "underline decoration-ember decoration-2 underline-offset-6"
+                      "relative block py-[var(--s-2)] text-[0.875rem] font-[500] tracking-[-0.005em]",
+                      "text-ink/75 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out)] hover:text-ink",
+                      isActive(link.href) && "text-ink"
                     )}
                   >
-                    {link.label}
+                    <span className="link-sweep">{link.label}</span>
+                    {isActive(link.href) ? (
+                      <span
+                        aria-hidden="true"
+                        className="absolute inset-x-0 -top-[2px] h-[2px] bg-ember"
+                      />
+                    ) : null}
                   </Link>
                 </li>
               ))}
             </ul>
-            <Magnetic>
-              <Link
-                href="/contact"
-                className="inline-flex items-center rounded-full bg-ember px-[var(--s-6)] py-[var(--s-3)] text-[0.875rem] font-[600] leading-[1.5] text-white transition-[background-color] duration-[var(--dur-fast)] hover:bg-ember-text"
-              >
-                Start a conversation
-              </Link>
-            </Magnetic>
+            <Link
+              href="/contact"
+              className={cn(
+                "inline-flex items-center rounded-[var(--r-sm)] border px-[var(--s-6)] py-[var(--s-3)]",
+                "text-[0.8125rem] font-[550] leading-[1.5] tracking-[-0.005em]",
+                "border-violet bg-violet text-bone transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out)]",
+                "hover:border-ink hover:bg-ink"
+              )}
+            >
+              Start a conversation
+            </Link>
           </div>
 
           {/* Mobile toggle — two 1.5px ink lines */}
@@ -156,14 +163,14 @@ export function Nav() {
             <span
               className={cn(
                 "block h-[1.5px] w-6 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out)]",
-                onDarkHero ? "bg-bone" : "bg-ink",
+                "bg-ink",
                 open && "translate-y-[3.75px] rotate-45 bg-bone"
               )}
             />
             <span
               className={cn(
                 "block h-[1.5px] w-6 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out)]",
-                onDarkHero ? "bg-bone" : "bg-ink",
+                "bg-ink",
                 open && "-translate-y-[3.75px] -rotate-45 bg-bone"
               )}
             />
@@ -178,11 +185,11 @@ export function Nav() {
         data-surface="dark"
         aria-hidden={!open}
         className={cn(
-          "fixed inset-0 z-[55] flex flex-col justify-between bg-violet px-[var(--s-6)] pb-[var(--s-8)] pt-[calc(var(--nav-h)+var(--s-8))] transition-opacity duration-[var(--dur-fast)] ease-[var(--ease-out)] md:hidden",
+          "fixed inset-0 z-[55] flex flex-col justify-between bg-violet-deep px-[var(--s-6)] pb-[var(--s-8)] pt-[calc(var(--nav-h)+var(--s-8))] transition-opacity duration-[var(--dur-fast)] ease-[var(--ease-out)] md:hidden",
           open ? "opacity-100" : "pointer-events-none opacity-0"
         )}
       >
-        <ul className="flex flex-col gap-[var(--s-6)]">
+        <ul className="flex flex-col">
           {[...NAV_LINKS].map((link, i) => (
             <li
               key={link.href}
@@ -190,7 +197,7 @@ export function Nav() {
                 transitionDelay: open ? `calc(${i} * var(--stagger))` : "0ms",
               }}
               className={cn(
-                "transition-[opacity,transform] duration-[var(--dur-base)] ease-[var(--ease-out)] motion-reduce:transition-none",
+                "border-t border-bone/15 transition-[opacity,transform] duration-[var(--dur-base)] ease-[var(--ease-out)] motion-reduce:transition-none",
                 open
                   ? "translate-y-0 opacity-100"
                   : "translate-y-[var(--reveal-y)] opacity-0 motion-reduce:translate-y-0"
@@ -200,13 +207,14 @@ export function Nav() {
                 href={link.href}
                 tabIndex={open ? 0 : -1}
                 aria-current={isActive(link.href) ? "page" : undefined}
-                className={cn(
-                  "text-h2 text-bone",
-                  isActive(link.href) &&
-                    "underline decoration-ember decoration-2 underline-offset-6"
-                )}
+                className="flex items-baseline gap-[var(--s-4)] py-[var(--s-4)]"
               >
-                {link.label}
+                <span className="text-index text-ember">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className={cn("text-h2 text-bone", isActive(link.href) && "italic")}>
+                  {link.label}
+                </span>
               </Link>
             </li>
           ))}

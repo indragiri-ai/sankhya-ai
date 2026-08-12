@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import localFont from "next/font/local";
+import { Newsreader, Tiro_Devanagari_Hindi } from "next/font/google";
 import "./globals.css";
 import { LenisProvider } from "@/components/site/LenisProvider";
 import { Nav } from "@/components/site/Nav";
@@ -9,10 +10,18 @@ import { SITE_NAME, SITE_URL, CONTACT } from "@/lib/constants";
 import { SERVICES } from "@/lib/services";
 
 /**
- * Fonts: Geist Sans + Geist Mono, variable, self-hosted (Build Book §1/§6).
- * display: "swap" + adjustFontFallback keeps swap CLS at zero.
- * Mukta (Devanagari) is added here only if Nepali is approved; until then
- * Devanagari renders via the documented system fallback stack (globals.css).
+ * Fonts (Editorial Institute, 2026-08-12). Three roles, no overlap:
+ *   Newsreader  — display serif, variable weight + optical size, italic for
+ *                 pull-quotes. Carries every headline.
+ *   Geist Sans  — interface and body grotesque. Retained: it is a clean,
+ *                 well-drawn neutral and the serif does the expressive work.
+ *   Geist Mono  — every numeral, eyebrow, and index label. Tabular.
+ *   Tiro Deva   — संख्या and any Nepali. Replaces the old system fallback.
+ *
+ * Geist is self-hosted from ./fonts. The two Google faces are downloaded and
+ * self-hosted by next/font at build time, so the static export ships with no
+ * third-party font requests — which also keeps the CSP in next.config.ts
+ * honest (it allows no external origins). display: "swap" throughout.
  */
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff2",
@@ -25,6 +34,24 @@ const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff2",
   variable: "--font-geist-mono",
   weight: "100 900",
+  display: "swap",
+});
+
+// No `weight` here on purpose: declaring explicit weights and an `axes` list
+// together is rejected by next/font. Omitting it loads the full variable
+// range, which is what the opsz axis in the type scale needs anyway.
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-newsreader",
+  style: ["normal", "italic"],
+  axes: ["opsz"],
+  display: "swap",
+});
+
+const tiroDevanagari = Tiro_Devanagari_Hindi({
+  subsets: ["devanagari", "latin"],
+  variable: "--font-tiro-deva",
+  weight: "400",
   display: "swap",
 });
 
@@ -79,8 +106,16 @@ export default function RootLayout({
   const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
 
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    /* The four font variables live on <html>, not <body>: the type scale in
+       globals.css resolves them through @theme tokens (--font-serif →
+       --font-newsreader) declared at :root. With the variables only on
+       <body>, those tokens resolve against an undefined value at :root and
+       every serif heading silently falls back to Georgia. */
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable} ${tiroDevanagari.variable}`}
+    >
+      <body className="antialiased">
         <a href="#content" className="skip-link">
           Skip to content
         </a>

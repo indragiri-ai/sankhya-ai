@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/components/motion/Reveal";
+import { PageHeader } from "@/components/site/PageHeader";
 import { CtaBand } from "@/components/site/CtaBand";
 import { MissionVision } from "@/components/site/MissionVision";
 import { TeamGrid } from "@/components/about/TeamGrid";
@@ -20,22 +21,17 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <div className="mx-auto max-w-[1200px] px-[var(--s-6)] pb-[var(--s-24)] pt-[calc(var(--nav-h)+var(--s-16))] md:pb-[var(--s-32)]">
-        <Reveal step={0}>
-          <p className="text-eyebrow text-grey-600">About</p>
-        </Reveal>
-        <Reveal step={1}>
-          <h1 className="text-h1 mt-[var(--s-4)] max-w-[20ch] text-ink">
-            A data company with an old name.
-          </h1>
-        </Reveal>
+      <div className="mx-auto max-w-[1200px] pb-[var(--s-24)] md:pb-[var(--s-32)]">
+        <PageHeader eyebrow="About" title="A data company with an old name." />
 
         {/* Founding story — [PLACEHOLDER] sample copy for full-site preview;
             replace with the founder's real account, edited for craft. */}
         <Reveal step={2}>
-          <div className="mt-[var(--s-12)] max-w-[68ch]">
-            <p className="text-eyebrow text-grey-600">How it started</p>
-            <p className="text-body-lg mt-[var(--s-4)] text-ink">
+          <div className="max-w-[68ch] px-[var(--s-6)]">
+            <p className="text-eyebrow border-t border-rule pt-[var(--s-4)] text-grey-600">
+              How it started
+            </p>
+            <p className="text-body-lg mt-[var(--s-6)] text-ink">
               [SAMPLE COPY] Sankhya AI was founded in Kathmandu by a small
               team who kept meeting the same problem in different rooms:
               organizations rich in records and poor in answers. Reports took
@@ -52,9 +48,9 @@ export default function AboutPage() {
         </Reveal>
 
         {/* The name, told in full — the Phase 4 band grows into a passage */}
-        <section className="mt-[var(--s-24)] grid grid-cols-1 items-start gap-[var(--s-12)] md:grid-cols-2">
+        <section className="mt-[var(--s-24)] grid grid-cols-1 items-start gap-[var(--s-12)] px-[var(--s-6)] md:grid-cols-2">
           <Reveal step={0}>
-            <p className="devanagari text-[clamp(4rem,8vw,7rem)] font-[550] leading-none text-violet">
+            <p className="devanagari text-[clamp(4rem,8vw,7rem)] leading-[1.15] text-violet">
               <span lang="sa" aria-hidden="true">
                 संख्या
               </span>

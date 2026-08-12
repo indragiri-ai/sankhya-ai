@@ -17,22 +17,32 @@ const STATS = [
 
 export function StatsBand() {
   return (
-    <section
-      aria-label="Sankhya AI in numbers"
-      className="border-y border-grey-200 bg-surface"
-    >
-      <div className="mx-auto max-w-[1200px] px-[var(--s-6)] py-[var(--s-16)]">
-        <dl className="grid grid-cols-1 gap-[var(--s-12)] sm:grid-cols-3">
+    <section aria-label="Sankhya AI in numbers" className="bg-bone">
+      <div className="mx-auto max-w-[1200px] px-[var(--s-6)] py-[var(--s-24)]">
+        {/* Numbered 03 so the home page's index runs contiguously: the
+            reader should never see a gap in the sequence. */}
+        <Reveal step={0}>
+          <div className="mb-[var(--s-16)] flex items-center gap-[var(--s-3)] border-t border-rule-strong pt-[var(--s-4)]">
+            <span className="text-index text-ember-text">03</span>
+            <span className="text-eyebrow text-grey-600">By the numbers</span>
+          </div>
+        </Reveal>
+
+        {/* Each figure sits in its own ruled column, like a statistical
+            appendix. The rule is the divider — no card, no fill, no shadow. */}
+        <dl className="grid grid-cols-1 sm:grid-cols-3">
           {STATS.map((s, i) => (
             <Reveal
               key={s.label}
-              step={i}
-              className="flex flex-col items-center gap-[var(--s-2)] text-center sm:items-start sm:text-left"
+              step={i + 1}
+              className="flex flex-col border-t border-rule-strong pt-[var(--s-6)] sm:pr-[var(--s-8)]"
             >
-              <dd className="text-figure text-[clamp(3rem,6vw,4.5rem)] leading-none text-violet">
+              <dd className="text-figure text-[clamp(3.25rem,7vw,4.5rem)] font-[400] leading-none text-violet">
                 <Counter value={s.value} />
               </dd>
-              <dt className="text-body text-grey-600">{s.label}</dt>
+              <dt className="text-small mt-[var(--s-4)] max-w-[22ch] text-grey-600">
+                {s.label}
+              </dt>
             </Reveal>
           ))}
         </dl>

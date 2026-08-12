@@ -34,14 +34,17 @@ export function CredStrip() {
   if (!SHOW_CRED_STRIP) return null;
 
   return (
-    <section aria-label="Partners" className="border-b border-grey-200 bg-surface">
-      <div className="mx-auto max-w-[1200px] px-[var(--s-6)] py-[var(--s-12)]">
+    <section aria-label="Partners" className="bg-bone">
+      <div className="mx-auto max-w-[1200px] border-t border-rule px-[var(--s-6)] py-[var(--s-12)]">
         <Reveal>
-          <p className="text-eyebrow text-center text-grey-600">
-            Trusted by partners &amp; collaborators
-          </p>
+          <div className="flex items-center gap-[var(--s-3)]">
+            <span aria-hidden="true" className="tick" />
+            <p className="text-eyebrow text-grey-600">
+              Trusted by partners &amp; collaborators
+            </p>
+          </div>
         </Reveal>
-        <ul className="mt-[var(--s-8)] flex flex-wrap items-center justify-center gap-x-[var(--s-16)] gap-y-[var(--s-6)]">
+        <ul className="mt-[var(--s-8)] flex flex-wrap items-center gap-x-[var(--s-16)] gap-y-[var(--s-6)]">
           {PARTNERS.map((p, i) => (
             <Reveal as="li" key={p.name} step={i + 1}>
               {p.logo ? (

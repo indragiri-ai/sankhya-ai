@@ -69,11 +69,13 @@ const TEAM: Person[] = [
 // profile deck; dummy entries hidden until then.
 const ADVISORS: Person[] = [];
 
-/** Geometric stand-in portrait: violet ring, ember bindu rotated per index. */
+/** Geometric stand-in portrait: violet ring, ember bindu rotated per index.
+ *  Near-square corners as of the 2026-08-12 redesign — see --r-* in
+ *  globals.css; the site no longer rounds anything meaningfully. */
 function PortraitMark({ index }: { index: number }) {
   const angle = (index * 36) % 360;
   return (
-    <div className="aspect-square w-full overflow-hidden rounded-[var(--r-md)] border border-grey-200 bg-surface">
+    <div className="aspect-square w-full overflow-hidden rounded-[var(--r-sm)] border border-rule bg-paper-2">
       <svg viewBox="0 0 96 96" className="h-full w-full" aria-hidden="true">
         <circle
           cx="48"
@@ -108,19 +110,19 @@ function PersonCard({
         <img
           src={asset(person.photo)}
           alt={person.name}
-          className="aspect-square w-full rounded-[var(--r-md)] border border-grey-200 object-cover"
+          className="aspect-square w-full rounded-[var(--r-sm)] border border-rule object-cover"
         />
       ) : (
         <PortraitMark index={index} />
       )}
-      <p className="mt-[var(--s-3)] text-body font-[550] text-ink">
+      <p className="mt-[var(--s-4)] border-t border-rule pt-[var(--s-3)] text-body font-[550] text-ink">
         {person.name}
       </p>
       <p className="mt-[var(--s-1)] text-small text-grey-600">{person.role}</p>
-      <p className="mt-[var(--s-2)] text-small text-grey-400">
+      <p className="mt-[var(--s-2)] text-small text-grey-600">
         {person.credential}
       </p>
-      <p className="text-small text-grey-400">{person.affiliation}</p>
+      <p className="text-small text-grey-600">{person.affiliation}</p>
     </Reveal>
   );
 }
@@ -129,11 +131,12 @@ export function TeamGrid() {
   return (
     <section className="mt-[var(--s-24)]" aria-label="Team">
       <SectionHeading
+        index="03"
         eyebrow="Team"
         title="The people doing the counting"
         lead="Economists, data scientists, and researchers — trained at Carnegie Mellon, Clemson, Stanford, Nebraska, and South Asian University, working across Nepal, India, and the United States."
       />
-      <ul className="mt-[var(--s-12)] grid grid-cols-2 gap-x-[var(--s-6)] gap-y-[var(--s-8)] sm:grid-cols-3">
+      <ul className="mt-[var(--s-16)] grid grid-cols-2 gap-x-[var(--s-8)] gap-y-[var(--s-12)] sm:grid-cols-3">
         {TEAM.map((p, i) => (
           <PersonCard key={p.name} person={p} index={i} step={i} />
         ))}

@@ -43,7 +43,7 @@ const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "";
  */
 function StaticContactCard() {
   return (
-    <div className="rounded-[var(--r-md)] border border-grey-200 bg-surface p-[var(--s-8)]">
+    <div className="rounded-[var(--r-sm)] border border-rule bg-surface p-[var(--s-8)]">
       <h3 className="text-h3 text-ink">Write to us directly.</h3>
       <p className="mt-[var(--s-3)] text-body measure text-grey-600">
         Tell us who you are, what your organization does, and what problem
@@ -161,7 +161,7 @@ function InteractiveContactForm() {
         ref={successRef}
         tabIndex={-1}
         role="status"
-        className="rounded-[var(--r-md)] border border-grey-200 bg-surface p-[var(--s-8)]"
+        className="rounded-[var(--r-sm)] border border-rule bg-surface p-[var(--s-8)]"
       >
         <h3 className="text-h3 text-ink">Received. Thank you.</h3>
         <p className="mt-[var(--s-3)] text-body measure text-grey-600">
@@ -229,7 +229,7 @@ function InteractiveContactForm() {
 
       <div>
         <Label htmlFor="organization">
-          Organization <span className="text-grey-400">(optional)</span>
+          Organization <span className="text-grey-600">(optional)</span>
         </Label>
         <Input
           id="organization"
@@ -262,7 +262,7 @@ function InteractiveContactForm() {
           id="service"
           aria-invalid={!!errors.service}
           aria-describedby={errors.service ? "service-error" : undefined}
-          className="mt-[var(--s-2)] flex h-9 w-full rounded-[var(--r-sm)] border border-grey-200 bg-surface px-3 py-1 text-body text-ink focus-visible:outline-2 focus-visible:outline-violet"
+          className="mt-[var(--s-2)] flex h-9 w-full rounded-[var(--r-sm)] border border-rule bg-surface px-3 py-1 text-body text-ink focus-visible:outline-2 focus-visible:outline-violet"
           {...register("service")}
         >
           {SERVICE_INTEREST_OPTIONS.map((opt) => (

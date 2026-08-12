@@ -8,43 +8,46 @@ import { SectionHeading } from "@/components/site/SectionHeading";
  * team and project documents plus the brand tagline. Replace verbatim
  * when the deck is re-uploaded — the layout will not need to change.
  *
- * Layout: two cards — Mission on flat violet (dark), Vision on surface
- * with a violet border. Ember eyebrows tie them to the section system.
+ * Layout (Editorial Institute, 2026-08-12): the two filled cards are gone.
+ * Mission and Vision are now ruled columns and the statements are set in the
+ * serif — these are the two most quotable sentences on the site and they
+ * were previously sitting in a UI sub-head weight inside boxes. Type does
+ * the work; no fill, no border, no radius.
  */
 export function MissionVision() {
   return (
-    <section className="mx-auto max-w-[1200px] px-[var(--s-6)] py-[var(--s-24)] md:py-[var(--s-32)]">
-      <SectionHeading
-        eyebrow="Who we are"
-        title="Your intelligence partner"
-        lead="Sankhya AI pairs field research with data engineering and applied AI — one team from questionnaire design to the system that runs on the answers."
-      />
+    <section className="bg-paper-2">
+      <div className="mx-auto max-w-[1200px] px-[var(--s-6)] py-[var(--s-24)] md:py-[var(--s-32)]">
+        <SectionHeading
+          index="02"
+          eyebrow="Who we are"
+          title="Your intelligence partner"
+          lead="Sankhya AI pairs field research with data engineering and applied AI — one team from questionnaire design to the system that runs on the answers."
+        />
 
-      <div className="mt-[var(--s-12)] grid gap-[var(--s-6)] md:grid-cols-2">
-        <Reveal step={0} className="h-full">
-          <article
-            data-surface="dark"
-            className="flex h-full flex-col gap-[var(--s-4)] rounded-[var(--r-lg)] bg-violet p-[var(--s-8)]"
-          >
-            <p className="text-eyebrow text-ember">Mission</p>
-            {/* [DRAFT — replace with exact wording from Company_profile.pptx] */}
-            <p className="text-h3 text-bone">
-              To put evidence at the center of decision-making in Nepal —
-              through rigorous research, dependable data systems, and applied
-              AI that organizations can trust and run themselves.
-            </p>
-          </article>
-        </Reveal>
-        <Reveal step={1} className="h-full">
-          <article className="flex h-full flex-col gap-[var(--s-4)] rounded-[var(--r-lg)] border-[1.5px] border-violet bg-surface p-[var(--s-8)]">
-            <p className="text-eyebrow text-ember-text">Vision</p>
-            {/* [DRAFT — replace with exact wording from Company_profile.pptx] */}
-            <p className="text-h3 text-ink">
-              A Nepal where every institution — public or private — decides
-              from data it can defend.
-            </p>
-          </article>
-        </Reveal>
+        <div className="mt-[var(--s-16)] grid gap-[var(--s-12)] md:grid-cols-2 md:gap-[var(--s-16)]">
+          <Reveal step={0}>
+            <article className="border-t border-rule-strong pt-[var(--s-6)]">
+              <p className="text-eyebrow text-ember-text">Mission</p>
+              {/* [DRAFT — replace with exact wording from Company_profile.pptx] */}
+              <p className="text-quote mt-[var(--s-6)] text-violet">
+                To put evidence at the center of decision-making in Nepal —
+                through rigorous research, dependable data systems, and applied
+                AI that organizations can trust and run themselves.
+              </p>
+            </article>
+          </Reveal>
+          <Reveal step={1}>
+            <article className="border-t border-rule-strong pt-[var(--s-6)]">
+              <p className="text-eyebrow text-ember-text">Vision</p>
+              {/* [DRAFT — replace with exact wording from Company_profile.pptx] */}
+              <p className="text-quote mt-[var(--s-6)] text-violet">
+                A Nepal where every institution — public or private — decides
+                from data it can defend.
+              </p>
+            </article>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

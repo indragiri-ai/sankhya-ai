@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SERVICES } from "@/lib/services";
 import { Reveal } from "@/components/motion/Reveal";
+import { PageHeader } from "@/components/site/PageHeader";
 import { CtaBand } from "@/components/site/CtaBand";
 
 export const metadata: Metadata = {
@@ -20,36 +21,27 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
-      <div className="mx-auto max-w-[1200px] px-[var(--s-6)] pb-[var(--s-24)] pt-[calc(var(--nav-h)+var(--s-16))] md:pb-[var(--s-32)]">
-        <Reveal step={0}>
-          <p className="text-eyebrow text-grey-600">Services</p>
-        </Reveal>
-        <Reveal step={1}>
-          <h1 className="text-h1 mt-[var(--s-4)] max-w-[20ch] text-ink">
-            What we build, and what you receive.
-          </h1>
-        </Reveal>
-        <Reveal step={2}>
-          <p className="text-body-lg measure mt-[var(--s-4)] text-grey-600">
-            Five pillars, one standard: every engagement ends in something
-            your organization can hold, run, and audit.
-          </p>
-        </Reveal>
+      <div className="mx-auto max-w-[1200px] pb-[var(--s-24)] md:pb-[var(--s-32)]">
+        <PageHeader
+          eyebrow="Services"
+          title="What we build, and what you receive."
+          lead="Five pillars, one standard: every engagement ends in something your organization can hold, run, and audit."
+        />
 
-        <div className="mt-[var(--s-24)] flex flex-col gap-[var(--s-24)]">
+        <div className="flex flex-col gap-[var(--s-24)] px-[var(--s-6)]">
           {SERVICES.map((service) => (
             <section
               key={service.slug}
               id={service.slug}
               aria-labelledby={`${service.slug}-title`}
-              className="grid grid-cols-1 gap-[var(--s-6)] border-t border-grey-200 pt-[var(--s-12)] md:grid-cols-[8rem_1fr]"
+              className="grid grid-cols-1 gap-[var(--s-6)] border-t border-rule pt-[var(--s-12)] md:grid-cols-[8rem_1fr]"
             >
               <Reveal step={0}>
-                <p className="text-figure text-[2rem] text-grey-400">{service.index}</p>
+                <p className="text-index text-ember-text">{service.index}</p>
               </Reveal>
               <div className="flex flex-col gap-[var(--s-4)]">
                 <Reveal step={1}>
-                  <h2 id={`${service.slug}-title`} className="text-h2 text-ink">
+                  <h2 id={`${service.slug}-title`} className="text-h2 text-violet">
                     {service.title}
                   </h2>
                 </Reveal>
@@ -58,10 +50,9 @@ export default function ServicesPage() {
                 </Reveal>
                 {service.examples.length > 0 ? (
                   <Reveal step={3}>
-                    <ul className="mt-[var(--s-2)] flex flex-col gap-[var(--s-2)] font-mono text-small text-grey-600">
+                    <ul className="mt-[var(--s-4)] flex flex-col font-mono text-small text-grey-600">
                       {service.examples.map((ex) => (
-                        <li key={ex}>
-                          <span aria-hidden="true">→ </span>
+                        <li key={ex} className="border-t border-rule py-[var(--s-3)]">
                           {ex}
                         </li>
                       ))}
