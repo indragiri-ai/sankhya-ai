@@ -20,6 +20,15 @@ export type Service = {
   body: string;
   /** Real delivered examples only — empty until fill-ins arrive */
   examples: string[];
+  /**
+   * Optional cover photograph for the homepage tile, as a path under
+   * /public (e.g. "/services/data-analytics.jpg"). The reference section
+   * this is modelled on is photo-led; we hold no photography yet, so a tile
+   * without an `image` falls back to a generated visual (ServiceVisual in
+   * components/home/ServicesGrid.tsx). Set this the day real images land —
+   * nothing else has to change.
+   */
+  image?: string;
 };
 
 export const SERVICES: Service[] = [

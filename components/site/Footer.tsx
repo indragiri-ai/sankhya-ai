@@ -10,6 +10,13 @@ import { asset } from "@/lib/asset";
  * Devanagari fallback stack (Mukta only ships if Nepali is approved) and
  * carries lang="sa" plus a visually-hidden transliteration for screen readers.
  * Four columns desktop, plain stacked lists mobile — no accordions.
+ *
+ * 2026-08-13: the top padding is halved rather than removed. CtaBand now
+ * shares this --ink surface and closes the page directly above, so on pages
+ * that carry a CTA the two render as one dark block — the seam was never
+ * the padding, it was the colour change, and that is gone. But /contact,
+ * /careers and /legal/privacy have no CtaBand, and at zero top padding the
+ * footer collided with the end of the page content there.
  */
 
 const COMPANY_LINKS = [
@@ -22,7 +29,7 @@ const COMPANY_LINKS = [
 export function Footer() {
   return (
     <footer data-surface="dark" className="bg-ink text-bone no-print">
-      <div className="mx-auto max-w-[1200px] px-[var(--s-6)] py-[var(--s-16)]">
+      <div className="mx-auto max-w-[1200px] px-[var(--s-6)] pb-[var(--s-16)] pt-[var(--s-12)]">
         {/* Devanagari typographic object — now set in Tiro Devanagari Hindi
             (single 400 weight, so no font-weight override) rather than
             whatever Devanagari face the visitor's OS happened to carry. */}

@@ -23,15 +23,22 @@ const STATS = [
 export function StatsRow({
   startStep = 0,
   onDark = false,
+  centered = false,
 }: {
   startStep?: number;
   /** the hero is a dark surface as of 2026-08-13 */
   onDark?: boolean;
+  /** the hero is axially centered as of the Fusemachines pass — match it */
+  centered?: boolean;
 }) {
   return (
     <dl className="grid grid-cols-3 gap-x-[var(--s-4)] sm:gap-x-[var(--s-8)]">
       {STATS.map((s, i) => (
-        <Reveal key={s.label} step={startStep + i} className="flex flex-col">
+        <Reveal
+          key={s.label}
+          step={startStep + i}
+          className={`flex flex-col ${centered ? "items-center text-center" : ""}`}
+        >
           <dd
             className={`text-figure text-[clamp(1.75rem,4vw,2.5rem)] font-[400] leading-none ${
               onDark ? "text-bone" : "text-violet"
