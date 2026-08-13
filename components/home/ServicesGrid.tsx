@@ -235,12 +235,14 @@ function ServiceTile({
         className={[
           "group relative isolate flex h-full w-full flex-col justify-end overflow-hidden",
           "rounded-[var(--r-lg)] p-[var(--s-6)]",
-          // Aspect drives the shape up to the two-column layout. On the
-          // three-across desktop grid a fixed ratio would either crop the
-          // copy or leave the half-width pair much taller than the trio, so
-          // there it becomes a minimum height and the grid row equalises the
-          // rest. Long service names are free to push a tile taller.
-          "aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto lg:min-h-[17rem]",
+          // Minimum heights, never a fixed aspect-ratio. A ratio was used
+          // here first and it is a trap on a box with overflow-hidden and
+          // justify-end: at 390px "Database & Data Engineering" wrapped to
+          // two lines and came within 6px of the ceiling, so one more word
+          // in any service's copy would have silently clipped its title off
+          // the top of the tile. Heights now grow with the content, and the
+          // grid row equalises tiles that sit side by side.
+          "min-h-[15rem] sm:min-h-[16rem] lg:min-h-[17rem]",
         ].join(" ")}
       >
         {/* Image layer: real photograph when we have one, generated field
