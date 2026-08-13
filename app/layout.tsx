@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import localFont from "next/font/local";
-import { Newsreader, Tiro_Devanagari_Hindi } from "next/font/google";
+import { Space_Grotesk, Tiro_Devanagari_Hindi } from "next/font/google";
 import "./globals.css";
 import { LenisProvider } from "@/components/site/LenisProvider";
 import { Nav } from "@/components/site/Nav";
@@ -10,13 +10,11 @@ import { SITE_NAME, SITE_URL, CONTACT } from "@/lib/constants";
 import { SERVICES } from "@/lib/services";
 
 /**
- * Fonts (Editorial Institute, 2026-08-12). Three roles, no overlap:
- *   Newsreader  — display serif, variable weight + optical size, italic for
- *                 pull-quotes. Carries every headline.
- *   Geist Sans  — interface and body grotesque. Retained: it is a clean,
- *                 well-drawn neutral and the serif does the expressive work.
- *   Geist Mono  — every numeral, eyebrow, and index label. Tabular.
- *   Tiro Deva   — संख्या and any Nepali. Replaces the old system fallback.
+ * Fonts. Four roles, no overlap:
+ *   Space Grotesk — display. Every headline, 600–700 weight.
+ *   Geist Sans    — interface and body copy, 15–17px.
+ *   Geist Mono    — every numeral, eyebrow, and label. Tabular.
+ *   Tiro Deva     — संख्या and any Nepali.
  *
  * Geist is self-hosted from ./fonts. The two Google faces are downloaded and
  * self-hosted by next/font at build time, so the static export ships with no
@@ -37,14 +35,15 @@ const geistMono = localFont({
   display: "swap",
 });
 
-// No `weight` here on purpose: declaring explicit weights and an `axes` list
-// together is rejected by next/font. Omitting it loads the full variable
-// range, which is what the opsz axis in the type scale needs anyway.
-const newsreader = Newsreader({
+// Space Grotesk replaced Newsreader on 2026-08-13. The editorial serif gave
+// the site a magazine voice; the brief is a premium AI and data company, and
+// that register is a heavy technical grotesque. Space Grotesk keeps real
+// character in its digits and its 'g' — enough to avoid looking like every
+// Inter/Poppins site — while carrying 700 weight cleanly at display size.
+const displayFont = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-newsreader",
-  style: ["normal", "italic"],
-  axes: ["opsz"],
+  variable: "--font-display",
+  weight: ["500", "600", "700"],
   display: "swap",
 });
 
@@ -108,12 +107,12 @@ export default function RootLayout({
   return (
     /* The four font variables live on <html>, not <body>: the type scale in
        globals.css resolves them through @theme tokens (--font-serif →
-       --font-newsreader) declared at :root. With the variables only on
-       <body>, those tokens resolve against an undefined value at :root and
-       every serif heading silently falls back to Georgia. */
+       --font-display) declared at :root. With the variables only on <body>,
+       those tokens resolve against an undefined value at :root and every
+       headline silently falls back to a system face. */
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable} ${tiroDevanagari.variable}`}
+      className={`${geistSans.variable} ${geistMono.variable} ${displayFont.variable} ${tiroDevanagari.variable}`}
     >
       <body className="antialiased">
         <a href="#content" className="skip-link">

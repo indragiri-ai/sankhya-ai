@@ -75,31 +75,42 @@ function ServiceIcon({ slug }: { slug: string }) {
   }
 }
 
-function ServiceRow({ service, step }: { service: Service; step: number }) {
+/**
+ * Card, not a ruled row. The ruled index belonged to the editorial pass; the
+ * reference set presents capabilities as a grid of bordered cards with an
+ * icon, a heading, a line of copy and an arrow — scannable at a glance,
+ * which is what a buyer does on a services section.
+ */
+function ServiceCard({ service, step }: { service: Service; step: number }) {
   return (
-    <Reveal step={step} as="li">
+    <Reveal step={step} as="li" className="h-full">
       <Link
         href={`/services#${service.slug}`}
-        className="group grid grid-cols-1 items-baseline gap-x-[var(--s-8)] gap-y-[var(--s-3)] border-t border-rule py-[var(--s-8)] transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out)] hover:border-violet md:grid-cols-12"
+        className="group flex h-full flex-col rounded-[var(--r-lg)] border border-rule bg-surface p-[var(--s-6)] transition-[border-color,box-shadow,transform] duration-[var(--dur-fast)] ease-[var(--ease-out)] hover:-translate-y-[3px] hover:border-violet/40 hover:shadow-[var(--shadow-card)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
       >
-        <div className="flex items-center gap-[var(--s-4)] md:col-span-5">
-          <span className="text-index text-grey-600 group-hover:text-ember-text">
-            {service.index}
-          </span>
-          <span className="text-grey-600 transition-colors duration-[var(--dur-fast)] group-hover:text-violet">
-            <ServiceIcon slug={service.slug} />
-          </span>
-          <h3 className="text-h3 text-ink transition-colors duration-[var(--dur-fast)] group-hover:text-violet">
-            {service.title}
-          </h3>
-        </div>
+        <span className="flex h-11 w-11 items-center justify-center rounded-[var(--r-md)] bg-violet-wash text-violet transition-colors duration-[var(--dur-fast)] group-hover:bg-violet group-hover:text-bone">
+          <ServiceIcon slug={service.slug} />
+        </span>
 
-        <p className="text-body text-grey-600 md:col-span-6">{service.oneLiner}</p>
+        <h3 className="text-h3 mt-[var(--s-6)] text-ink">{service.title}</h3>
+        <p className="text-body mt-[var(--s-3)] text-grey-600">{service.oneLiner}</p>
 
-        <span
-          aria-hidden="true"
-          className="hidden h-px w-[24px] origin-left justify-self-end bg-rule-strong transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out)] group-hover:scale-x-[1.6] motion-reduce:transition-none motion-reduce:group-hover:scale-x-100 md:col-span-1 md:block md:self-center"
-        />
+        <span className="mt-auto inline-flex items-center gap-[var(--s-2)] pt-[var(--s-6)] text-[0.875rem] font-[600] text-ember-text">
+          Learn more
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+            className="h-4 w-4 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out)] group-hover:translate-x-[3px] motion-reduce:group-hover:translate-x-0"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.75"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M3 8h9" />
+            <path d="M8.5 4.5 12 8l-3.5 3.5" />
+          </svg>
+        </span>
       </Link>
     </Reveal>
   );
@@ -107,17 +118,16 @@ function ServiceRow({ service, step }: { service: Service; step: number }) {
 
 export function ServicesGrid() {
   return (
-    <section className="bg-bone">
+    <section className="bg-paper-2">
       <div className="mx-auto max-w-[1200px] px-[var(--s-6)] section-pad">
         <SectionHeading
-          index="03"
           eyebrow="Core services"
           title="What we build"
           lead="Five ways in — from a first honest assessment to systems running in production."
         />
-        <ul className="mt-[var(--heading-gap)] border-b border-rule">
+        <ul className="mt-[var(--heading-gap)] grid grid-cols-1 gap-[var(--s-4)] sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((s, i) => (
-            <ServiceRow key={s.slug} service={s} step={i} />
+            <ServiceCard key={s.slug} service={s} step={i} />
           ))}
         </ul>
       </div>

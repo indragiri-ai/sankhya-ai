@@ -12,20 +12,26 @@
      decoration: it sets headlines and dark bands. Ember is a scalpel —
      rules, markers, numerals, one word per page at most. It never fills a
      headline and never appears as a gradient or glow. */
-  --violet:      #34006F;  /* brand primary (सं). Flat use only */
-  --violet-deep: #250050;  /* large dark surfaces — richer than flat violet */
-  --violet-wash: #F2EDF7;  /* tinted panels on paper */
-  --ink:         #160029;  /* body text, darkest surfaces */
-  --bone:        #FAF7F1;  /* page canvas */
-  --paper-2:     #F4F0E8;  /* alternating band — one step down from bone */
-  --surface:     #FFFFFF;  /* cards, panels */
-  --ember:       #FE5000;  /* accent (AI). Rules, markers, numerals ≥24px ONLY */
+  /* Retuned 2026-08-13 to a technology register. The warm cream canvas and
+     warm hairlines were what made the site read editorial/magazine rather
+     than "AI company" — Fusemachines, C3.ai and Scale all sit on white or
+     near-black with cool neutrals. Token NAMES are unchanged so the whole
+     site re-skins from here; only the values move. */
+  --violet:      #34006F;  /* brand primary (सं) — unchanged, it is the logo */
+  --violet-deep: #14082E;  /* dark sections — deeper and cooler than before */
+  --violet-wash: #F1EDFA;  /* tinted panels */
+  --ink:         #0F0B1A;  /* body text — near-black with a violet cast */
+  --bone:        #FFFFFF;  /* page canvas: white, not cream */
+  --paper-2:     #F6F5FA;  /* alternating band — cool, barely there */
+  --surface:     #FFFFFF;
+  --ember:       #FE5000;  /* accent (AI) — now earns button scale, as the
+                              reference set uses its accent */
   --ember-text:  #C43D00;  /* links & small accent text on light (AA-safe) */
-  --grey-600:    #5B5566;
-  --grey-400:    #948DA1;
-  --grey-200:    #E4E0EA;  /* cool hairline — retained for shadcn primitives */
-  --rule:        #DCD5C8;  /* warm editorial hairline — the default rule on paper */
-  --rule-strong: #C4BBA9;  /* section-opening rules */
+  --grey-600:    #55506B;
+  --grey-400:    #8B87A0;
+  --grey-200:    #E5E2EC;
+  --rule:        #E5E2EC;  /* cool hairline */
+  --rule-strong: #CFCAD9;
   --viz-moss:    #3D7068;  /* second data-viz series only */
 
   /* Spacing scale (rem) */
@@ -43,9 +49,11 @@
      of the section padding; the two compounded. */
   --heading-gap: 2rem;
 
-  /* Radii — editorial direction is near-square. Softness reads friendly;
-     this brand needs precise. Pills are gone site-wide. */
-  --r-sm: 2px; --r-md: 3px; --r-lg: 4px;
+  /* Radii. The 2px near-square was part of the editorial direction; the
+     reference set (Fusemachines 4–15px and a 34px pill, C3.ai rounded
+     cards) is softer, and on white the sharper corners read cheap rather
+     than precise. */
+  --r-sm: 6px; --r-md: 10px; --r-lg: 14px; --r-pill: 999px;
 
   /* Shadows — used sparingly; borders preferred */
   --shadow-card: 0 1px 2px rgb(22 0 41 / 0.06), 0 8px 24px rgb(22 0 41 / 0.06);
@@ -102,9 +110,13 @@
   --color-rule-strong: var(--rule-strong);
   --color-viz-moss: var(--viz-moss);
 
-  /* Fonts — serif carries the voice, grotesque carries the interface,
-     mono carries every numeral. */
-  --font-serif: var(--font-newsreader), ui-serif, Georgia, serif;
+  /* Fonts. The editorial serif is gone: it gave the site a magazine voice
+     when the brief is a premium AI and data company. Headlines are now a
+     technical grotesque at heavy weight — the register Fusemachines gets
+     from Museo Sans 900 and C3.ai from its own grotesque — while Space
+     Grotesk keeps enough character to avoid the Inter/Poppins default look.
+     `--font-serif` keeps its name so nothing downstream has to change. */
+  --font-serif: var(--font-display), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
   --font-deva: var(--font-tiro-deva), "Noto Serif Devanagari", "Mangal", serif;
@@ -145,116 +157,107 @@
    bold. Weight is not how this brand signals authority; scale, restraint,
    and generous leading are. h3 drops to the grotesque so the serif keeps
    its rank and the hierarchy stays legible at a glance. */
-/* Sizes reduced 2026-08-13. The previous scale peaked at 84px display against
-   17px body — a 5:1 ratio that reads as a poster, and at that size a
-   400-weight serif goes thin and stretched. 60px puts display:body at ~3.5:1,
-   which still commands the page but sits in a document rather than shouting
-   over one. */
-@utility text-display {
+/* Sizes and weights retuned 2026-08-13. The serif at 400 with 1.7 leading
+   read as a magazine; the reference set runs bold grotesques at tight
+   leading with 15-16px body copy. Everything here is smaller, heavier and
+   tighter than the version it replaces. */
+@utility text-hero {
   font-family: var(--font-serif);
-  font-size: clamp(2.25rem, 6.5vw, 2.75rem);
+  font-size: clamp(2.125rem, 6.5vw, 2.625rem);
   line-height: 1.08;
-  font-weight: 400;
-  letter-spacing: -0.018em;
-  font-variation-settings: "opsz" 48;
+  font-weight: 700;
+  letter-spacing: -0.03em;
   @media (min-width: 768px) {
-    font-size: clamp(2.75rem, 4.2vw, 3.75rem);
-    line-height: 1.05;
-    letter-spacing: -0.022em;
-    font-variation-settings: "opsz" 60;
+    font-size: clamp(2.5rem, 3.9vw, 3.5rem);
+    line-height: 1.06;
+    letter-spacing: -0.035em;
   }
 }
 
-/* Hero only. The category (Fractal, C3.ai, Scale AI) opens on very large
-   type; this sits a step above --text-display without returning to the 84px
-   that read as a poster. */
-@utility text-hero {
+@utility text-display {
   font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 8vw, 3.25rem);
-  line-height: 1.04;
-  font-weight: 400;
-  letter-spacing: -0.022em;
-  font-variation-settings: "opsz" 60;
+  font-size: clamp(1.875rem, 5.5vw, 2.25rem);
+  line-height: 1.12;
+  font-weight: 700;
+  letter-spacing: -0.028em;
   @media (min-width: 768px) {
-    font-size: clamp(3rem, 4.8vw, 4.25rem);
-    line-height: 1.01;
-    letter-spacing: -0.028em;
-    font-variation-settings: "opsz" 72;
+    font-size: 2.75rem;
+    line-height: 1.08;
+    letter-spacing: -0.032em;
   }
 }
 
 @utility text-h1 {
   font-family: var(--font-serif);
-  font-size: clamp(1.875rem, 5.2vw, 2.25rem);
-  line-height: 1.14;
-  font-weight: 400;
-  letter-spacing: -0.015em;
-  font-variation-settings: "opsz" 36;
+  font-size: clamp(1.75rem, 5vw, 2rem);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.026em;
   @media (min-width: 768px) {
-    font-size: 2.75rem;
-    line-height: 1.08;
-    letter-spacing: -0.018em;
+    font-size: 2.375rem;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
   }
 }
 
 @utility text-h2 {
   font-family: var(--font-serif);
-  font-size: 1.5rem;
-  line-height: 1.2;
-  font-weight: 400;
-  letter-spacing: -0.012em;
-  font-variation-settings: "opsz" 28;
+  font-size: 1.375rem;
+  line-height: 1.22;
+  font-weight: 700;
+  letter-spacing: -0.022em;
   @media (min-width: 768px) {
-    font-size: 1.875rem;
-    line-height: 1.15;
+    font-size: 1.75rem;
+    line-height: 1.18;
+    letter-spacing: -0.025em;
   }
 }
 
-/* Sub-heads return to the grotesque: medium weight, tight tracking. */
 @utility text-h3 {
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  font-size: 1.125rem;
-  line-height: 1.35;
-  font-weight: 550;
-  letter-spacing: -0.011em;
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.015em;
   @media (min-width: 768px) {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
   }
 }
 
-/* Pull-quotes, name-band, the one-per-page emphatic line. Serif italic. */
+/* Pull-quotes and the one-per-page emphatic line. */
 @utility text-quote {
   font-family: var(--font-serif);
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   line-height: 1.4;
-  font-weight: 400;
-  font-style: italic;
-  letter-spacing: -0.008em;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: -0.018em;
   @media (min-width: 768px) {
-    font-size: 1.5rem;
-    line-height: 1.38;
+    font-size: 1.375rem;
+    line-height: 1.35;
   }
 }
 
-/* Lead paragraphs sit under every heading. Slightly larger and looser than
-   body: the serif above needs room to breathe or the page reads cramped. */
+/* Lead paragraphs. 17px max — the reference set runs 15-20px here, never
+   the 19px+ this site was using. */
 @utility text-body-lg {
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  font-size: 1.0625rem;
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.6;
   font-weight: 400;
-  letter-spacing: -0.004em;
+  letter-spacing: -0.006em;
   @media (min-width: 768px) {
-    font-size: 1.1875rem;
-    line-height: 1.72;
+    font-size: 1.0625rem;
+    line-height: 1.62;
   }
 }
 
 @utility text-body {
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  font-size: 1rem;
-  line-height: 1.65;
+  font-size: 0.9375rem;
+  line-height: 1.58;
   font-weight: 400;
+  letter-spacing: -0.004em;
 }
 
 @utility text-small {
@@ -380,8 +383,8 @@ body {
   background: var(--bone);
   color: var(--ink);
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  font-size: 1rem;
-  line-height: 1.65;
+  font-size: 0.9375rem;
+  line-height: 1.58;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -428,50 +431,34 @@ body {
 }
 
 /* ============================================================
-   HERO VISUAL (components/home/HeroViz.tsx)
-   The trend line draws left→right, then the observations land in
-   sequence. Pure CSS so the static export ships no extra JS.
+   HERO CONSTELLATION (components/home/HeroViz.tsx)
+   Nodes fade up in sequence behind the copy. Atmosphere only —
+   it carries no data, so reduced motion simply shows it settled.
    ============================================================ */
 
-.hero-viz-trend {
-  stroke-dasharray: 420;
-  stroke-dashoffset: 420;
-  animation: viz-draw 1100ms var(--ease-out) 200ms forwards;
-}
-
-.hero-viz-points circle {
+.hero-net circle {
   opacity: 0;
-  animation: viz-pop var(--dur-base) var(--ease-out) forwards;
+  animation: net-in 900ms var(--ease-out) forwards;
 }
 
-@keyframes viz-draw {
-  to {
-    stroke-dashoffset: 0;
-  }
+@keyframes net-in {
+  from { opacity: 0; }
+  to   { opacity: var(--net-o, 0.5); }
 }
 
-@keyframes viz-pop {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 0.75;
-    transform: translateY(0);
-  }
+.hero-net line {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: net-draw 1400ms var(--ease-out) 120ms forwards;
 }
 
-/* The chart is meaning, not decoration, so it still renders in full for
-   readers who ask for less motion — it simply arrives already drawn. */
+@keyframes net-draw {
+  to { stroke-dashoffset: 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .hero-viz-trend {
-    stroke-dashoffset: 0;
-    animation: none;
-  }
-  .hero-viz-points circle {
-    opacity: 0.75;
-    animation: none;
-  }
+  .hero-net circle { opacity: 0.5; animation: none; }
+  .hero-net line { stroke-dashoffset: 0; animation: none; }
 }
 
 /* Print: institutional buyers print things (Phase 10 §C.3).

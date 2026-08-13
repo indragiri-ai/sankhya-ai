@@ -2,24 +2,75 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 /**
- * Button patterns (Editorial Institute, 2026-08-12).
+ * Buttons (rebuilt 2026-08-13 against the reference set).
  *
- * The pills are gone. A pill is a friendly shape; this brand is selling
- * rigour to banks, universities and INGOs, so the shape is near-square
- * (--r-sm, 2px) and the fill is violet rather than ember. Ember stops being
- * a button colour entirely — at button scale it shouted, and it was the
- * single biggest reason the old site read as a startup landing page.
+ * Fusemachines' primary action is a yellow pill with a black circled arrow
+ * sitting inside the left end of it — the single most recognisable element on
+ * their page. C3.ai and Scale use plain pills. The near-square 2px buttons
+ * from the editorial pass read cheap on white, so the shape is a pill again,
+ * and ember finally earns button scale: on a dark hero it is the one thing
+ * that should catch the eye.
  *
- *  - PrimaryButton:  violet fill, bone text. The one filled style.
- *  - OutlineButton:  hairline border. Adapts to dark surfaces via onDark.
- *  - SecondaryLink:  text + rule that extends on hover. No arrow bounce.
+ *  - ArrowButton   the primary CTA: ember pill, circled arrow, ink text.
+ *  - PrimaryButton solid violet pill for in-page actions.
+ *  - GhostButton   outline pill, adapts to dark surfaces.
+ *  - SecondaryLink text + rule, unchanged in spirit.
  */
 
-const BASE =
-  "inline-flex items-center justify-center rounded-[var(--r-sm)] px-[var(--s-6)] py-[var(--s-4)] " +
-  "text-[0.875rem] font-[550] leading-none tracking-[-0.005em] " +
+const PILL =
+  "group inline-flex items-center gap-[var(--s-3)] rounded-[var(--r-pill)] " +
+  "text-[0.9375rem] font-[600] leading-none tracking-[-0.01em] " +
   "transition-[background-color,border-color,color] duration-[var(--dur-fast)] ease-[var(--ease-out)] " +
   "motion-reduce:transition-none";
+
+function ArrowGlyph({ className }: { className?: string }) {
+  return (
+    <span
+      aria-hidden="true"
+      className={cn(
+        "flex h-8 w-8 flex-none items-center justify-center rounded-full",
+        "transition-[transform,background-color,color] duration-[var(--dur-fast)] ease-[var(--ease-out)]",
+        "group-hover:translate-x-[3px] motion-reduce:group-hover:translate-x-0",
+        className
+      )}
+    >
+      <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 8h9" />
+        <path d="M8.5 4.5 12 8l-3.5 3.5" />
+      </svg>
+    </span>
+  );
+}
+
+/** The primary call to action. One per view. */
+export function ArrowButton({
+  href,
+  children,
+  className,
+}: {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    // Ink label on ember, not white: white on #FE5000 measures 3.30:1, which
+    // fails AA at this size. Ink on ember is 5.87:1. It is also what the
+    // reference does — Fusemachines sets black on its yellow for the same
+    // reason. Hover inverts the whole pill rather than darkening the fill,
+    // which would have dragged the label back under threshold.
+    <Link
+      href={href}
+      className={cn(
+        PILL,
+        "bg-ember py-[6px] pl-[6px] pr-[var(--s-6)] text-ink hover:bg-ink hover:text-white",
+        className
+      )}
+    >
+      <ArrowGlyph className="bg-ink text-white group-hover:bg-white group-hover:text-ink" />
+      {children}
+    </Link>
+  );
+}
 
 export function PrimaryButton({
   href,
@@ -29,9 +80,6 @@ export function PrimaryButton({
 }: {
   href: string;
   children: React.ReactNode;
-  /** On the dark hero, violet-on-violet has almost no contrast. A bone fill
-   *  reads as the brightest thing on the panel — which is what a primary CTA
-   *  should be — without spending ember on it. */
   onDark?: boolean;
   className?: string;
 }) {
@@ -39,7 +87,8 @@ export function PrimaryButton({
     <Link
       href={href}
       className={cn(
-        BASE,
+        PILL,
+        "px-[var(--s-6)] py-[var(--s-4)]",
         onDark
           ? "bg-bone text-violet-deep hover:bg-white"
           : "bg-violet text-bone hover:bg-ink",
@@ -51,7 +100,7 @@ export function PrimaryButton({
   );
 }
 
-export function OutlineButton({
+export function GhostButton({
   href,
   children,
   onDark = false,
@@ -66,11 +115,11 @@ export function OutlineButton({
     <Link
       href={href}
       className={cn(
-        BASE,
-        "border",
+        PILL,
+        "border px-[var(--s-6)] py-[var(--s-4)]",
         onDark
-          ? "border-bone/35 text-bone hover:border-bone hover:bg-bone/10"
-          : "border-rule-strong text-ink hover:border-ink hover:bg-ink/[0.04]",
+          ? "border-bone/30 text-bone hover:border-bone hover:bg-bone/10"
+          : "border-rule-strong text-ink hover:border-violet hover:text-violet",
         className
       )}
     >
@@ -79,11 +128,9 @@ export function OutlineButton({
   );
 }
 
-/**
- * The quiet tertiary action. A 1px rule sits under the label and extends to
- * full width on hover — the same sweep language as body links, so the site
- * has exactly one "this is a link" gesture.
- */
+/** Back-compat alias: several pages still import OutlineButton. */
+export const OutlineButton = GhostButton;
+
 export function SecondaryLink({
   href,
   children,
@@ -99,21 +146,26 @@ export function SecondaryLink({
     <Link
       href={href}
       className={cn(
-        "group inline-flex items-center gap-[var(--s-3)] py-[var(--s-2)]",
-        "text-[0.875rem] font-[550] leading-none tracking-[-0.005em]",
-        onDark ? "text-bone" : "text-ink",
+        "group inline-flex items-center gap-[var(--s-2)] py-[var(--s-2)]",
+        "text-[0.9375rem] font-[600] leading-none tracking-[-0.01em]",
+        onDark ? "text-bone" : "text-ember-text",
         className
       )}
     >
       <span className="link-sweep">{children}</span>
-      <span
+      <svg
         aria-hidden="true"
-        className={cn(
-          "h-px w-[18px] origin-left transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out)]",
-          "group-hover:scale-x-[1.5] motion-reduce:transition-none motion-reduce:group-hover:scale-x-100",
-          onDark ? "bg-bone/60" : "bg-ember"
-        )}
-      />
+        viewBox="0 0 16 16"
+        className="h-4 w-4 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out)] group-hover:translate-x-[3px] motion-reduce:group-hover:translate-x-0"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M3 8h9" />
+        <path d="M8.5 4.5 12 8l-3.5 3.5" />
+      </svg>
     </Link>
   );
 }

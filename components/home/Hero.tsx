@@ -1,99 +1,79 @@
 import { Reveal } from "@/components/motion/Reveal";
-import { PrimaryButton, OutlineButton } from "@/components/site/Buttons";
+import { ArrowButton, GhostButton } from "@/components/site/Buttons";
 import { StatsRow } from "@/components/home/StatsBand";
 import { HeroViz } from "@/components/home/HeroViz";
 
 /**
- * Hero (rebuilt 2026-08-13, second pass).
+ * Hero (rebuilt 2026-08-13, third pass — the reference pass).
  *
- * The previous two attempts both failed the same test: no visual. The first
- * had a gradient and a particle field that read as a crypto template; the
- * second stripped those out and put a wordmark in their place, which is
- * typography, not a hero.
+ * Built against the category rather than from taste. Fusemachines opens on a
+ * deep field with a node-and-edge constellation, a coloured eyebrow, a very
+ * heavy sans headline, a short bold subhead, and a pill CTA with a circled
+ * arrow; C3.ai and Scale run the same dark-field-and-heavy-type structure.
+ * That is what this now is, in Sankhya's own violet and ember rather than
+ * Fusemachines' navy and yellow.
  *
- * Checked against the category before rebuilding — Fractal, C3.ai and Scale
- * AI all open on a dark full-bleed panel, very large light type, and a real
- * graphic. That convention exists because it works for enterprise buyers, so
- * this follows it, with two deliberate differences:
- *
- *   - The dark is --violet-deep, the brand's own colour, not the generic
- *     near-black every AI site uses. It is recognisably Sankhya at a glance.
- *   - The graphic is a plot rather than an abstract field. The company sells
- *     measurement; a scatter with a fitted trend says that literally, and it
- *     is honest about being illustrative (see HeroViz — no numbers, no
- *     units, no implied dataset).
- *
- * The fold carries the headline, the visual, the 5/3/6 figures and the
- * partner logos. Nothing about this company's credibility is below it.
+ * What changed from the previous attempt:
+ *   - The plot panel is gone. It was a nice idea and it read as a chart
+ *     pinned to a slide, not as a hero.
+ *   - The headline is a heavy grotesque, not a light serif, and it is the
+ *     largest thing on the page by a wide margin.
+ *   - Copy is tighter. The reference set runs 15-20px body against a 56px+
+ *     headline; the contrast is the point.
  */
 export function Hero() {
   return (
-    <section data-surface="dark" className="relative overflow-hidden bg-violet-deep">
-      {/* A single soft lift behind the plot. One gradient, no glow, no
-          particles — enough to give the panel depth without the template
-          look the first version had. */}
+    <section
+      data-surface="dark"
+      className="relative isolate overflow-hidden bg-violet-deep"
+    >
+      {/* Constellation, full-bleed behind everything */}
+      <div aria-hidden="true" className="absolute inset-0 -z-10 opacity-90">
+        <HeroViz />
+      </div>
+      {/* Depth: brand violet lifting from the lower left, ink at the edges,
+          so the headline always has a dark field under it */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
+        className="absolute inset-0 -z-10"
         style={{
           background:
-            "radial-gradient(70% 70% at 78% 38%, rgb(52 0 111 / 0.85) 0%, transparent 70%)",
+            "radial-gradient(80% 80% at 12% 88%, rgb(52 0 111 / 0.75) 0%, transparent 62%), linear-gradient(90deg, rgb(20 8 46 / 0.92) 0%, rgb(20 8 46 / 0.35) 55%, rgb(20 8 46 / 0.75) 100%)",
         }}
       />
 
-      <div className="relative mx-auto max-w-[1200px] px-[var(--s-6)] pb-[var(--s-8)] pt-[calc(var(--nav-h)+var(--s-8))] md:pb-[var(--s-12)] md:pt-[calc(var(--nav-h)+var(--s-12))]">
-        <div className="grid grid-cols-1 items-center gap-[var(--s-8)] lg:grid-cols-12 lg:gap-[var(--s-12)]">
-          {/* Copy */}
-          <div className="lg:col-span-7">
-            <Reveal step={0}>
-              <div className="flex items-center gap-[var(--s-3)]">
-                <span aria-hidden="true" className="tick" />
-                <span className="text-eyebrow text-bone/60">Your Intelligence Partner</span>
-              </div>
-            </Reveal>
+      <div className="relative mx-auto max-w-[1200px] px-[var(--s-6)] pb-[var(--s-8)] pt-[calc(var(--nav-h)+var(--s-12))] md:pb-[var(--s-12)] md:pt-[calc(var(--nav-h)+var(--s-16))]">
+        <div className="max-w-[52rem]">
+          <Reveal step={0}>
+            <p className="text-eyebrow text-ember">Your Intelligence Partner</p>
+          </Reveal>
 
-            <Reveal step={1}>
-              <h1 className="text-hero mt-[var(--s-6)] text-bone">
-                Decisions, made <em>measurable</em>.
-              </h1>
-            </Reveal>
+          <Reveal step={1}>
+            <h1 className="text-hero mt-[var(--s-4)] text-bone">
+              Turn what you can count into what you can decide.
+            </h1>
+          </Reveal>
 
-            <Reveal step={2}>
-              <p className="text-body-lg measure-lead mt-[var(--s-6)] text-bone/75">
-                Sankhya AI is a research and data company in Kathmandu. We run
-                field research, build analytics, and apply AI so organizations
-                in Nepal can decide from evidence.
-              </p>
-            </Reveal>
+          <Reveal step={2}>
+            <p className="text-body-lg mt-[var(--s-6)] max-w-[46ch] text-bone/70">
+              Sankhya AI is a research and data company in Kathmandu. Field
+              research, data engineering, and applied AI — one team, from the
+              questionnaire to the system that runs on the answers.
+            </p>
+          </Reveal>
 
-            <Reveal step={3}>
-              <div className="mt-[var(--s-8)] flex flex-wrap items-center gap-[var(--s-4)]">
-                <PrimaryButton href="/contact" onDark>
-                  Start a conversation
-                </PrimaryButton>
-                <OutlineButton href="/services" onDark>
-                  Explore our services
-                </OutlineButton>
-              </div>
-            </Reveal>
-          </div>
-
-          {/* The panel */}
-          <div className="lg:col-span-5">
-            <Reveal step={2}>
-              <figure className="border border-bone/15 bg-bone/[0.04] p-[var(--s-6)] text-bone backdrop-blur-[2px]">
-                <HeroViz />
-                <figcaption className="mt-[var(--s-4)] flex items-center gap-[var(--s-3)] border-t border-bone/15 pt-[var(--s-3)] font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-bone/50">
-                  <span aria-hidden="true" className="h-[6px] w-[6px] flex-none bg-ember" />
-                  Measure first, conclude second
-                </figcaption>
-              </figure>
-            </Reveal>
-          </div>
+          <Reveal step={3}>
+            <div className="mt-[var(--s-8)] flex flex-wrap items-center gap-[var(--s-4)]">
+              <ArrowButton href="/contact">Start your AI journey</ArrowButton>
+              <GhostButton href="/services" onDark>
+                Explore our services
+              </GhostButton>
+            </div>
+          </Reveal>
         </div>
 
-        {/* Proof bar — figures and partners, both above the fold. */}
-        <div className="mt-[var(--s-12)] border-t border-bone/15 pt-[var(--s-6)]">
+        {/* Proof, above the fold */}
+        <div className="mt-[var(--s-12)] border-t border-bone/12 pt-[var(--s-6)] md:mt-[var(--s-16)]">
           <StatsRow startStep={4} onDark />
         </div>
       </div>

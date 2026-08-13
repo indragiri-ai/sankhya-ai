@@ -1,104 +1,112 @@
 /**
- * HeroViz — the hero's visual panel.
+ * HeroViz — the hero's background constellation.
  *
- * Every comparable company puts a real graphic in the hero: Fractal runs a
- * full-bleed abstract field, C3.ai and Scale AI run dark atmospheric panels.
- * A services firm with no product UI to screenshot still needs something to
- * look at, and for a company whose whole claim is "decisions, made
- * measurable" the honest answer is a plot — a scatter with a fitted trend,
- * drawn the way an analyst would draw it.
+ * Fusemachines runs a node-and-edge field behind its hero; C3.ai and Scale
+ * run dark atmospheric panels. A network reads as "AI" instantly and costs
+ * nothing, so this is that.
  *
- * IMPORTANT — this states no facts. The points are generated from a fixed
- * seed and the axes carry bare 0–100 ticks, so the panel reads as a chart
- * without implying a dataset, a client, or a result. The site's evidence
- * rule (no invented figures, ever) holds here too: there is deliberately no
- * title, no unit, and no caption that could be mistaken for a finding.
+ * The graph is GENERATED, not hand-listed, from a fixed-seed PRNG: a
+ * hand-written list was too sparse and rendered as a few long diagonals
+ * across the screen instead of a network. Sixty-odd nodes connected only to
+ * near neighbours give a field that reads as a mesh at any width. The seed
+ * makes it deterministic, so server and client markup match exactly.
  *
- * Pure inline SVG + CSS animation — no library, no canvas, no JS on the
- * client, and it costs the bundle nothing. Motion is suppressed under
- * prefers-reduced-motion by the rules in globals.css.
+ * Wide viewBox (160×90) so the field keeps its density on a desktop hero
+ * rather than being scaled up until the lines look like beams.
+ *
+ * Inline SVG + CSS animation. No library, no canvas, no client JS. Carries
+ * no data — it is atmosphere, and makes no claim.
  */
 
-// Fixed sample — deterministic so the server and client render identically.
-// Positively correlated on purpose: a fitted line sloping up and to the
-// right is read as improvement, and a hero is the wrong place to show a
-// company's own graphic trending down.
-const POINTS: Array<[number, number, number]> = [
-  [8, 26, 3], [14, 34, 4], [19, 29, 3], [23, 42, 5], [28, 38, 3],
-  [31, 51, 4], [36, 45, 6], [40, 56, 3], [44, 53, 4], [48, 62, 5],
-  [52, 59, 3], [56, 67, 4], [61, 64, 7], [65, 73, 4], [69, 70, 3],
-  [73, 78, 5], [78, 75, 3], [82, 83, 4], [87, 80, 3], [92, 88, 5],
-];
+const W = 160;
+const H = 90;
+const COUNT = 64;
+const LINK_RADIUS = 22; // only join nearby nodes, or it becomes a solid web
+const MAX_LINKS_PER_NODE = 3;
 
-const W = 420;
-const H = 300;
-const PAD = { l: 34, r: 12, t: 14, b: 28 };
+// mulberry32 — small deterministic PRNG so the layout never shifts.
+function rng(seed: number) {
+  return function () {
+    seed |= 0;
+    seed = (seed + 0x6d2b79f5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
 
-const x = (v: number) => PAD.l + (v / 100) * (W - PAD.l - PAD.r);
-const y = (v: number) => PAD.t + (1 - v / 100) * (H - PAD.t - PAD.b);
+type Node = { x: number; y: number; r: number; hot: boolean };
+
+const { NODES, EDGES } = (() => {
+  const rand = rng(20260813);
+  const nodes: Node[] = [];
+
+  for (let i = 0; i < COUNT; i++) {
+    nodes.push({
+      x: rand() * W,
+      y: rand() * H,
+      r: 0.28 + rand() * 0.42,
+      hot: rand() < 0.16, // roughly one in six picks up the ember accent
+    });
+  }
+
+  const edges: Array<[number, number]> = [];
+  const degree = new Array(COUNT).fill(0);
+
+  for (let i = 0; i < COUNT; i++) {
+    // nearest neighbours first, so links stay short and local
+    const near = nodes
+      .map((n, j) => ({ j, d: Math.hypot(n.x - nodes[i].x, n.y - nodes[i].y) }))
+      .filter((c) => c.j !== i && c.d < LINK_RADIUS)
+      .sort((a, b) => a.d - b.d);
+
+    for (const { j } of near) {
+      if (degree[i] >= MAX_LINKS_PER_NODE) break;
+      if (degree[j] >= MAX_LINKS_PER_NODE) continue;
+      if (edges.some(([a, b]) => (a === i && b === j) || (a === j && b === i))) continue;
+      edges.push([i, j]);
+      degree[i]++;
+      degree[j]++;
+    }
+  }
+
+  return { NODES: nodes, EDGES: edges };
+})();
 
 export function HeroViz() {
-  const ticks = [0, 25, 50, 75, 100];
-
   return (
     <svg
       viewBox={`0 0 ${W} ${H}`}
-      className="hero-viz h-auto w-full"
-      role="img"
-      aria-label="Illustrative scatter plot with a fitted trend line, representing measured data"
+      preserveAspectRatio="xMidYMid slice"
+      className="hero-net h-full w-full"
+      aria-hidden="true"
+      focusable="false"
     >
-      {/* Grid */}
-      <g stroke="currentColor" strokeWidth="0.5" opacity="0.18">
-        {ticks.map((t) => (
-          <line key={`h${t}`} x1={PAD.l} x2={W - PAD.r} y1={y(t)} y2={y(t)} />
-        ))}
-        {ticks.map((t) => (
-          <line key={`v${t}`} y1={PAD.t} y2={H - PAD.b} x1={x(t)} x2={x(t)} />
-        ))}
-      </g>
-
-      {/* Axes */}
-      <g stroke="currentColor" strokeWidth="1" opacity="0.55">
-        <line x1={PAD.l} x2={PAD.l} y1={PAD.t} y2={H - PAD.b} />
-        <line x1={PAD.l} x2={W - PAD.r} y1={H - PAD.b} y2={H - PAD.b} />
-      </g>
-
-      {/* Tick labels — mono, matching the site's numeral rule */}
-      <g fill="currentColor" opacity="0.5" fontSize="8" fontFamily="var(--font-mono)">
-        {ticks.map((t) => (
-          <text key={`ty${t}`} x={PAD.l - 8} y={y(t) + 3} textAnchor="end">
-            {t}
-          </text>
-        ))}
-        {ticks.map((t) => (
-          <text key={`tx${t}`} x={x(t)} y={H - PAD.b + 14} textAnchor="middle">
-            {t}
-          </text>
+      <g stroke="#FFFFFF" strokeWidth="0.09" opacity="0.16">
+        {EDGES.map(([a, b], i) => (
+          <line
+            key={i}
+            x1={NODES[a].x}
+            y1={NODES[a].y}
+            x2={NODES[b].x}
+            y2={NODES[b].y}
+            style={{ animationDelay: `${(i % 24) * 55}ms` }}
+          />
         ))}
       </g>
-
-      {/* Fitted trend — the one ember element, drawn on load */}
-      <line
-        className="hero-viz-trend"
-        x1={x(4)}
-        y1={y(24)}
-        x2={x(96)}
-        y2={y(90)}
-        stroke="var(--ember)"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-
-      {/* Observations */}
-      <g className="hero-viz-points" fill="currentColor">
-        {POINTS.map(([px, py, r], i) => (
+      <g>
+        {NODES.map((n, i) => (
           <circle
             key={i}
-            cx={x(px)}
-            cy={y(py)}
-            r={r}
-            opacity="0.75"
-            style={{ animationDelay: `${300 + i * 45}ms` }}
+            cx={n.x}
+            cy={n.y}
+            r={n.r}
+            fill={n.hot ? "var(--ember)" : "#FFFFFF"}
+            style={{
+              // consumed by the net-in keyframe in globals.css
+              ["--net-o" as string]: n.hot ? 0.9 : 0.45,
+              animationDelay: `${(i % 20) * 70}ms`,
+            }}
           />
         ))}
       </g>
