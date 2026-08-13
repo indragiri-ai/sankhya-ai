@@ -17,9 +17,14 @@ export const SHOW_OUTCOMES = true;
 export const SHOW_INSTITUTION_MARKS = true;
 
 /**
- * "Our latest updates" (2026-08-13). ON for preview with [SAMPLE] entries
- * (lib/updates.ts). There is no blog yet — a section advertising thinking
- * the company has not published is worse than no section, so this goes OFF
- * at launch unless real posts exist by then.
+ * "Our latest updates" (2026-08-13). OFF since 2026-08-13: the section was
+ * built and reviewed, but its entries are [SAMPLE] (lib/updates.ts) and this
+ * site is published to a public URL — the cards rendered "[SAMPLE] BLOG" to
+ * anyone holding the link. There is no blog yet, and a section advertising
+ * thinking the company has not published is worse than no section.
+ *
+ * Re-insertion plan: put real posts in lib/updates.ts and flip this to true.
+ * The component (components/home/LatestUpdates.tsx) is finished and still
+ * mounted on the homepage; it renders nothing while this is false.
  */
-export const SHOW_LATEST_UPDATES = true;
+export const SHOW_LATEST_UPDATES = false;
